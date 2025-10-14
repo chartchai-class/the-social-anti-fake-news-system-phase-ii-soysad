@@ -17,5 +17,6 @@ public interface NewsService {
     Page<News> getNewsByReporterName(String reporterName, Pageable pageable);
 
     News saveNews(News news);
+    void deleteNewsFromDatabase(Long id);
     void deleteNews(Long id);
 }

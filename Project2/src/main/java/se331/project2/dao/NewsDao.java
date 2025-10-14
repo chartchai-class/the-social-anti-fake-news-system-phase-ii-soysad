@@ -17,6 +17,6 @@ public interface NewsDao {
     Page<News> findByReporterName(String reporterName, Pageable pageable);
 
     News save(News news);
-    void delete(Long id);
-
+    void deleteNewsFromDatabase(Long id);
+    void deleteNews(Long id);
 }

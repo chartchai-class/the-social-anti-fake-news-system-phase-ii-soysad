@@ -3,7 +3,9 @@ package se331.project2.dao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 import se331.project2.entity.News;
 import se331.project2.entity.NewsStatus;
 import se331.project2.repository.NewsRepository;
@@ -53,7 +55,15 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteNewsFromDatabase(Long id) {
         newsRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteNews(Long id) {
+        News news = newsRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        news.setIsDeleted(true);
+        newsRepository.save(news);
     }
 }

@@ -52,7 +52,12 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public void deleteNewsFromDatabase(Long id) {
+        newsDao.deleteNewsFromDatabase(id);
+    }
+
+    @Override
     public void deleteNews(Long id) {
-        newsDao.delete(id);
+        newsDao.deleteNews(id);
     }
 }

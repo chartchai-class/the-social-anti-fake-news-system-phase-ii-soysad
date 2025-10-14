@@ -15,8 +15,8 @@ public interface NewsMapper {
 
     @Mapping(target = "reporter", expression = "java(news.getReporter() != null ? news.getReporter().getName() : null)")
     @Mapping(target = "publishedAt", source = "createdAt")
-    @Mapping(target = "fakeCount", expression = "java(countVotes(news.getVotes(), VoteType.FAKE))")
-    @Mapping(target = "notFakeCount", expression = "java(countVotes(news.getVotes(), VoteType.NOT_FAKE))")
+    @Mapping(target = "fakeCount",    expression = "java(countFake(news))")
+    @Mapping(target = "notFakeCount", expression = "java(countNotFake(news))")
 //  NewsMapper INSTANCE = Mappers.getMapper(NewsMapper.class);
 
     //NEWS HOMEPAGE DTO
@@ -25,7 +25,15 @@ public interface NewsMapper {
     //NEWS DETAIL DTO
     NewsDetailDTO getNewsDetailDTO(News news);
 
-    default Long countVotes(List<Vote> votes, VoteType type) {
+    default Long countFake(News news) {
+        return countVotes(news != null ? news.getVotes() : null, se331.project2.entity.VoteType.FAKE);
+    }
+
+    default Long countNotFake(News news) {
+        return countVotes(news != null ? news.getVotes() : null, se331.project2.entity.VoteType.NOT_FAKE);
+    }
+
+    default Long countVotes(List<Vote> votes, se331.project2.entity.VoteType type) {
         if (votes == null) return 0L;
         return votes.stream().filter(v -> v.getType() == type).count();
     }

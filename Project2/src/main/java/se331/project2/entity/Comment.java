@@ -33,7 +33,7 @@ public class Comment extends BaseEntity {
     private User author;
 
     @Column(nullable = false)
-    private String comments;
+    private String body;
 
 
     @ElementCollection

@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import se331.project2.DTO.UserDTO;
 import se331.project2.entity.NewsStatus;
 import se331.project2.entity.Vote;
-import se331.project2.entity.VoteType;
 
 import java.util.Date;
 import java.util.List;

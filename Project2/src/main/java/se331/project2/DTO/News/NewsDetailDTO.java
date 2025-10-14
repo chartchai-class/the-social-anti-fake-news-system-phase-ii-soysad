@@ -1,4 +1,5 @@
 package se331.project2.DTO.News;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,10 +27,15 @@ public class NewsDetailDTO {
     String mainImageUrl;
     Date publishedAt;
     UserDTO reporter;
+
+    @Builder.Default
     List<String> galleryImages = new ArrayList<>();
 
     NewsStatus status;
-    List<CommentDTO> comments;
+
+    @Builder.Default
+    List<CommentDTO> comments = new ArrayList<>();
+
     Long fakeCount;
     Long notFakeCount;
 }

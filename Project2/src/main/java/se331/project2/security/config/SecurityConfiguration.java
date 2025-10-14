@@ -43,7 +43,7 @@ public class SecurityConfiguration {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
                       .requestMatchers(HttpMethod.GET, "/news", "/news/**").permitAll()
-                      .requestMatchers(HttpMethod.POST, "/news").hasRole("ADMIN")
+                      .requestMatchers(HttpMethod.POST, "/news").permitAll()
 
                       .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
                       .requestMatchers(HttpMethod.GET,"/comment").permitAll()
