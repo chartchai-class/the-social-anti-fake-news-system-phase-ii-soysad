@@ -18,7 +18,6 @@ import se331.project2.security.token.TokenType;
 import se331.project2.security.user.Role;
 import se331.project2.security.user.User;
 import se331.project2.security.user.UserRepository;
-import se331.project2.util.LabMapper;
 
 import java.io.IOException;
 import java.util.List;

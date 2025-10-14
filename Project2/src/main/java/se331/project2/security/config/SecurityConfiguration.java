@@ -42,10 +42,11 @@ public class SecurityConfiguration {
             .authorizeHttpRequests((authorize) -> {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
-                      .requestMatchers(HttpMethod.GET, "/events", "/events/**").permitAll()
+                      .requestMatchers(HttpMethod.GET, "/news", "/news/**").permitAll()
+                      .requestMatchers(HttpMethod.POST, "/news").hasRole("ADMIN")
+
                       .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
-                      .requestMatchers(HttpMethod.POST, "/events").hasRole("ADMIN")
-                      .requestMatchers(HttpMethod.GET,"/organizer").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/comment").permitAll()
                       .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                       .anyRequest().authenticated();
 

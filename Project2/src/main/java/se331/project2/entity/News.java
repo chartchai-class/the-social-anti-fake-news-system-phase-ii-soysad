@@ -31,6 +31,7 @@ public class News extends BaseEntity {
     String fullDetail;
     Date dateTime;
     String mainImageUrl;
+    Date publishedAt;
     @ElementCollection
     @Builder.Default
     List<String> galleryImages = new ArrayList<>();

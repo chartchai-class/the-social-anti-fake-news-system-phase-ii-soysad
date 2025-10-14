@@ -1,0 +1,43 @@
+package se331.project2.DTO.News;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import se331.project2.DTO.UserDTO;
+import se331.project2.entity.NewsStatus;
+import se331.project2.entity.Vote;
+import se331.project2.entity.VoteType;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewsHomepageDTO {
+    Long id;
+    String slug; //Name On URL
+    String topic;
+    String shortDetail;
+    String fullDetail;
+    String mainImageUrl;
+    String reporter;
+    Date publishedAt;
+
+    NewsStatus status;
+    List<Vote> votes;
+    Long fakeCount;
+    Long notFakeCount;
+
+    public long getFakeCount() {
+        return votes == null ? 0 : votes.stream().filter(v -> v.getType() == VoteType.FAKE).count();
+    }
+
+    public long getNotFakeCount() {
+        return votes == null ? 0 : votes.stream().filter(v -> v.getType() == VoteType.NOT_FAKE).count();
+    }
+
+
+}
