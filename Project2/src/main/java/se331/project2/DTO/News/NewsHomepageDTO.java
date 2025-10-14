@@ -31,13 +31,6 @@ public class NewsHomepageDTO {
     Long fakeCount;
     Long notFakeCount;
 
-    public long getFakeCount() {
-        return votes == null ? 0 : votes.stream().filter(v -> v.getType() == VoteType.FAKE).count();
-    }
-
-    public long getNotFakeCount() {
-        return votes == null ? 0 : votes.stream().filter(v -> v.getType() == VoteType.NOT_FAKE).count();
-    }
 
 
 }

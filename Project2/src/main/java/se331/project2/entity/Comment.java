@@ -28,7 +28,6 @@ public class Comment extends BaseEntity {
     @EqualsAndHashCode.Exclude
     private News news;
 
-
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
     private User author;

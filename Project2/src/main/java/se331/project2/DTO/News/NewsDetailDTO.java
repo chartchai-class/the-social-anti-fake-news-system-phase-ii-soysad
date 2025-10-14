@@ -3,6 +3,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se331.project2.DTO.CommentDTO;
 import se331.project2.DTO.UserDTO;
 import se331.project2.entity.NewsStatus;
 
@@ -23,8 +24,8 @@ public class NewsDetailDTO {
     String shortDetail;
     String fullDetail;
     String mainImageUrl;
-    String reporter;
     Date publishedAt;
+    UserDTO reporter;
     List<String> galleryImages = new ArrayList<>();
 
     NewsStatus status;
