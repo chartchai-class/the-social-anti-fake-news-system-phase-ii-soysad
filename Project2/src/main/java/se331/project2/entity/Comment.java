@@ -1,5 +1,6 @@
 package se331.project2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -26,6 +27,7 @@ public class Comment extends BaseEntity {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private News news;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -35,6 +37,8 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private String body;
 
+    @Column(nullable = false)
+    private VoteType voteType;
 
     @ElementCollection
     @Builder.Default

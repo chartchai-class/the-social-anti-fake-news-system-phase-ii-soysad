@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se331.project2.entity.VoteType;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,7 @@ public class CommentDTO {
     UserDTO author;
     String body;
     Date createdAt;
+    VoteType voteType;
 
     @Builder.Default
     List<String> attachments = new ArrayList<>();
