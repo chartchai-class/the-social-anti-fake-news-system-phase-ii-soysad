@@ -19,4 +19,5 @@ public interface NewsService {
     News saveNews(News news);
     void deleteNewsFromDatabase(Long id);
     void deleteNews(Long id);
+    void restoreNews(Long id);
 }

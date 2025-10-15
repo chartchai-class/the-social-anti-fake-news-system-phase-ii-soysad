@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import se331.project2.DTO.CommentDTO;
+import se331.project2.DTO.Comment.CommentDTO;
 import se331.project2.DTO.UserDTO;
 import se331.project2.entity.NewsStatus;
 
@@ -31,12 +31,11 @@ public class NewsDetailDTO {
     @Builder.Default
     List<String> galleryImages = new ArrayList<>();
 
-    NewsStatus status;
-
     @Builder.Default
     List<CommentDTO> comments = new ArrayList<>();
 
-    Long fakeCount;
-    Long notFakeCount;
+    NewsStatus status;
+    int fakeCount;
+    int notFakeCount;
 }
 

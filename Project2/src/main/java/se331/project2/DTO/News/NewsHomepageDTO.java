@@ -25,8 +25,8 @@ public class NewsHomepageDTO {
     Date publishedAt;
 
     NewsStatus status;
-    Long fakeCount;
-    Long notFakeCount;
+    int fakeCount;
+    int notFakeCount;
 
 
 

@@ -60,4 +60,9 @@ public class NewsServiceImpl implements NewsService {
     public void deleteNews(Long id) {
         newsDao.deleteNews(id);
     }
+
+    @Override
+    public void restoreNews(Long id) {
+        newsDao.restoreNews(id);
+    }
 }

@@ -43,12 +43,15 @@ public class SecurityConfiguration {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
                       .requestMatchers(HttpMethod.GET, "/news", "/news/**").permitAll()
-                      .requestMatchers(HttpMethod.POST, "/news").permitAll()
+                      .requestMatchers(HttpMethod.POST, "/news","/news/**").permitAll()
+                      .requestMatchers(HttpMethod.PUT, "/news","/news/**").permitAll()
 
                       .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
-                      .requestMatchers(HttpMethod.GET,"/comment").permitAll()
+                      .requestMatchers(HttpMethod.GET,"/comments").permitAll()
                       .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                      .anyRequest().authenticated();
+                      .requestMatchers(HttpMethod.POST, "/comments").permitAll()
+                      .requestMatchers(HttpMethod.PUT, "/comments/**").permitAll()
+                      .anyRequest().permitAll();
 
 
             })

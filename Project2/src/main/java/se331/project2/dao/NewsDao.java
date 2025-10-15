@@ -19,4 +19,5 @@ public interface NewsDao {
     News save(News news);
     void deleteNewsFromDatabase(Long id);
     void deleteNews(Long id);
+    void restoreNews(Long id);
 }
