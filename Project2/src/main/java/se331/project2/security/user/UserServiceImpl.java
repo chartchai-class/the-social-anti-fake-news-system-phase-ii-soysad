@@ -34,4 +34,13 @@ public class UserServiceImpl implements UserService {
     public User findById(Integer id) {
         return userDao.findById(id);
     }
+
+    @Override
+    @Transactional
+    public User updateRole(Integer id, Role newRole) {
+        User u = userDao.findById(id);
+        if (u == null) return null;
+        u.setRole(newRole);
+        return userDao.save(u);
+    }
 }

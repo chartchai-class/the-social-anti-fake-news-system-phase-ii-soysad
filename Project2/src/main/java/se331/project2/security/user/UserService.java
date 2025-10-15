@@ -12,4 +12,6 @@ public interface UserService {
 
     Page<User> findAll(Pageable pageable);
     User findById(Integer id);
+    User updateRole(Integer id, Role newRole);
+
 }

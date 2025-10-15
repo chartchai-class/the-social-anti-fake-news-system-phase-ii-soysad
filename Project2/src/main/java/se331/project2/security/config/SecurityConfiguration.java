@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
@@ -42,12 +44,17 @@ public class SecurityConfiguration {
             .authorizeHttpRequests((authorize) -> {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
-                      .requestMatchers(HttpMethod.GET, "/news", "/news/**").permitAll()
-                      .requestMatchers(HttpMethod.POST, "/news").hasAnyRole("MEMBER", "ADMIN")
                       .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
-                      .requestMatchers(HttpMethod.GET,"/comment").permitAll()
-                      .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                      .requestMatchers(HttpMethod.GET, "/users","/users/**").permitAll()
+                      .requestMatchers(HttpMethod.GET, "/news", "/news/**").authenticated()
+                      .requestMatchers(HttpMethod.POST, "/news").hasAnyRole("MEMBER", "ADMIN")
+
+                      .requestMatchers(HttpMethod.GET,"/comment").authenticated()
+                      .requestMatchers(HttpMethod.OPTIONS,"/**").authenticated()
+
+                      .requestMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN")
+                      .requestMatchers(HttpMethod.GET,  "/users/**").authenticated()
+                      .requestMatchers(HttpMethod.PATCH, "/users/*/role").hasRole("ADMIN")
+
 
                       .anyRequest().authenticated();
 

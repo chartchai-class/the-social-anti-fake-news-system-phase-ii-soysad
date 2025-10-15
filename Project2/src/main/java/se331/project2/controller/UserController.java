@@ -5,11 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import se331.project2.security.user.User;
-import se331.project2.security.user.UserDTO;
-import se331.project2.security.user.UserMapper;
-import se331.project2.security.user.UserService;
+import se331.project2.security.user.*;
 
 @RestController
 @RequestMapping("/users")
@@ -26,9 +24,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("#id == principal.id or hasRole('ADMIN')")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
         User user = userService.findById(id);
         if (user == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(UserMapper.toDTO(user));
+    }
+
+    @PatchMapping("/{id}/role")
+    public ResponseEntity<UserDTO> updateUserRole(@PathVariable Integer id, @RequestBody UpdateRoleRequest request) {
+        User updated = userService.updateRole(id, request.getRole());
+        if (updated == null) {return ResponseEntity.notFound().build();}
+        return ResponseEntity.ok(UserMapper.toDTO(updated));
     }
 }
