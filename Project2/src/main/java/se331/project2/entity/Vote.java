@@ -8,7 +8,6 @@ import se331.project2.security.user.User;
 @Data
 @Entity
 @Table(name = "votes", uniqueConstraints = {
-        // one vote per user per news
         @UniqueConstraint(name = "uk_vote_news_voter", columnNames = {"news_id", "voter_id"})
 }, indexes = {
         @Index(name = "idx_votes_news_id", columnList = "news_id")
@@ -27,7 +26,6 @@ public class Vote extends BaseEntity {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "news_id", nullable = false)
     private News news;
-
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "voter_id", nullable = false)
     private User voter;

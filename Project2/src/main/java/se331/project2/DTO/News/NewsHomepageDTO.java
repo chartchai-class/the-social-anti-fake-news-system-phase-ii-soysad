@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class NewsHomepageDTO {
     Long id;
-    String slug; //Name On URL
+    String slug;
     String topic;
     String shortDetail;
     String fullDetail;
@@ -28,7 +28,5 @@ public class NewsHomepageDTO {
     List<Vote> votes;
     Long fakeCount;
     Long notFakeCount;
-
-
 
 }

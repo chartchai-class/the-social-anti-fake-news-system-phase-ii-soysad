@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,17 +38,24 @@ public class User implements UserDetails {
   @Column(unique = true)
   private String username;
   private String email;
-
   private String password;
-  private Boolean enabled;
+
+  @Builder.Default private Boolean enabled = true;
+
   private String profileImage;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private Role role;
 
-  private Boolean isDeleted = false;
+  @Builder.Default private Boolean isDeleted = false;
+
+
+  @CreationTimestamp
+  @Column(updatable = false)
+  @Builder.Default
   private LocalDateTime createdAt = LocalDateTime.now();
+  @UpdateTimestamp
   private LocalDateTime updatedAt;
 
 
@@ -99,5 +108,10 @@ public class User implements UserDetails {
     public boolean isReader() {
         return role == Role.READER;
     }
+
+
+
+
+
 
 }

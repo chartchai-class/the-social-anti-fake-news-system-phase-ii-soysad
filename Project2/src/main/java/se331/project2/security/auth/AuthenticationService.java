@@ -39,12 +39,11 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .enabled(true)
-                .role(Role.READER)  //Default As READER
+                .role(Role.READER)
                 .build();
 
         var savedUser = repository.save(user);
 
-        // สร้าง token จาก "savedUser" จะชัวร์กว่า (เผื่อมี ID/ค่าอื่นถูกเติม)
         var jwtToken = jwtService.generateToken(savedUser);
         var refreshToken = jwtService.generateRefreshToken(savedUser);
 
@@ -69,7 +68,6 @@ public class AuthenticationService {
 
     String jwtToken = jwtService.generateToken(user);
     String refreshToken = jwtService.generateRefreshToken(user);
-//    revokeAllUserTokens(user);
     saveUserToken(user, jwtToken);
     return AuthenticationResponse.builder()
             .accessToken(jwtToken)

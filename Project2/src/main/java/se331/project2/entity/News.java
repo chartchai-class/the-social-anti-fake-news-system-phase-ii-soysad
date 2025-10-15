@@ -25,7 +25,7 @@ public class News extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String slug; //Name On URL
+    String slug;
     String topic;
     String shortDetail;
     String fullDetail;

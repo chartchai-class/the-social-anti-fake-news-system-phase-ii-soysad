@@ -1,4 +1,4 @@
-package se331.project2.dao;
+package se331.project2.DAO.News;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

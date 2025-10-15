@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import se331.project2.dao.NewsDao;
+import se331.project2.DAO.News.NewsDao;
 import se331.project2.entity.News;
 import se331.project2.entity.NewsStatus;
 

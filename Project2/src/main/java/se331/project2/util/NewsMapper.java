@@ -17,12 +17,9 @@ public interface NewsMapper {
     @Mapping(target = "publishedAt", source = "createdAt")
     @Mapping(target = "fakeCount",    expression = "java(countFake(news))")
     @Mapping(target = "notFakeCount", expression = "java(countNotFake(news))")
-//  NewsMapper INSTANCE = Mappers.getMapper(NewsMapper.class);
 
-    //NEWS HOMEPAGE DTO
     NewsHomepageDTO getNewsHomepageDTO(News news);
 
-    //NEWS DETAIL DTO
     NewsDetailDTO getNewsDetailDTO(News news);
 
     default Long countFake(News news) {

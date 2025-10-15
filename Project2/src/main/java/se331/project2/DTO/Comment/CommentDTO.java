@@ -1,4 +1,4 @@
-package se331.project2.DTO;
+package se331.project2.DTO.Comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
