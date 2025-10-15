@@ -1,17 +1,14 @@
 package se331.project2.security.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import se331.project2.entity.BaseEntity;
 import se331.project2.security.token.Token;
 
 import java.time.LocalDateTime;
@@ -26,10 +23,20 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
+
+    @Builder.Default
+    private Boolean enabled = true;
+
+    @Builder.Default
+    private Boolean isDeleted = false;
+
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @EqualsAndHashCode.Exclude
   private Integer id;
 
   private String name;
@@ -39,23 +46,12 @@ public class User implements UserDetails {
   private String username;
   private String email;
   private String password;
-
-  @Builder.Default private Boolean enabled = true;
-
-  private String profileImage;
+  private String profileImageUrl;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private Role role;
 
-  @Builder.Default private Boolean isDeleted = false;
-
-
-  @CreationTimestamp
-  @Column(updatable = false)
-  @Builder.Default
-  private LocalDateTime createdAt = LocalDateTime.now();
-  @UpdateTimestamp
   private LocalDateTime updatedAt;
 
 

@@ -29,9 +29,7 @@ public class News extends BaseEntity {
     String topic;
     String shortDetail;
     String fullDetail;
-    Date dateTime;
     String mainImageUrl;
-    Date publishedAt;
 
     @ElementCollection
     @Builder.Default
@@ -51,4 +49,7 @@ public class News extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private NewsStatus status = NewsStatus.UNVERIFIED;
+
+    int fakeCount;
+    int notFakeCount;
 }

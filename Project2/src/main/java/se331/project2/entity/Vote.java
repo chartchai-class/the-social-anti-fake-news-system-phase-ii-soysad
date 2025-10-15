@@ -1,5 +1,6 @@
 package se331.project2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -25,6 +26,7 @@ public class Vote extends BaseEntity {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "news_id", nullable = false)
+    @JsonIgnore
     private News news;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "voter_id", nullable = false)

@@ -48,7 +48,8 @@ public class SecurityConfiguration {
                       .requestMatchers(HttpMethod.GET, "/news", "/news/**").authenticated()
                       .requestMatchers(HttpMethod.POST, "/news").hasAnyRole("MEMBER", "ADMIN")
 
-                      .requestMatchers(HttpMethod.GET,"/comment").authenticated()
+                      .requestMatchers(HttpMethod.POST, "/comments").permitAll()
+                      .requestMatchers(HttpMethod.PUT, "/comments/**").permitAll()
                       .requestMatchers(HttpMethod.OPTIONS,"/**").authenticated()
 
                       .requestMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN")

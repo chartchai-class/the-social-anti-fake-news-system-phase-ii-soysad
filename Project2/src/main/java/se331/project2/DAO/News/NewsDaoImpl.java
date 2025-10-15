@@ -63,7 +63,16 @@ public class NewsDaoImpl implements NewsDao {
     public void deleteNews(Long id) {
         News news = newsRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
         news.setIsDeleted(true);
+        newsRepository.save(news);
+    }
+
+    @Override
+    public void restoreNews(Long id) {
+        News news = newsRepository.findByIdIncludeDeletedNative(id)
+                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        news.setIsDeleted(false);
         newsRepository.save(news);
     }
 }
