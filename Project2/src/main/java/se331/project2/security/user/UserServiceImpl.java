@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Optional;
 
 
 @Service
@@ -22,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User findByUsername(String username) {
+    public Optional<User> findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
@@ -42,5 +45,13 @@ public class UserServiceImpl implements UserService {
         if (u == null) return null;
         u.setRole(newRole);
         return userDao.save(u);
+    }
+    
+    @Override
+    @Transactional
+    public void setProfileImage(Integer id, String url) {
+        User user = userDao.findById(id);
+        user.setProfileImageUrl(url);
+        userDao.save(user);
     }
 }

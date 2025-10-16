@@ -7,7 +7,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import se331.project2.security.user.*;
+import se331.project2.util.StorageFileDto;
+import se331.project2.util.SupabaseStorageService;
 
 @RestController
 @RequestMapping("/users")
@@ -15,6 +18,8 @@ import se331.project2.security.user.*;
 public class UserController {
 
     final UserService userService;
+    final SupabaseStorageService supabaseStorageService;
+
 
     @GetMapping
     public ResponseEntity<Page<UserDTO>> getAllUsers(Pageable pageable) {
@@ -37,4 +42,6 @@ public class UserController {
         if (updated == null) {return ResponseEntity.notFound().build();}
         return ResponseEntity.ok(UserMapper.toDTO(updated));
     }
+
+
 }

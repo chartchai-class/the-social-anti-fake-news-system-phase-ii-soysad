@@ -5,14 +5,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class UserDaoImpl implements UserDao {
     final UserRepository userRepository;
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
@@ -20,17 +22,8 @@ public class UserDaoImpl implements UserDao {
         return userRepository.save(user);
     }
 
-//    @Override
-//    public Page<User> findAll(Pageable pageable) {
-//        return userRepository.findByIsDeletedFalse(pageable);
-//    }
-//
-//    @Override
-//    public User findById(Integer id) {
-//        return userRepository.findByIdAndIsDeletedFalse(id).orElse(null);
-//    }
-@Override
-public Page<User> findAll(Pageable pageable) {
+    @Override
+    public Page<User> findAll(Pageable pageable) {
     return userRepository.findByIsDeletedFalse(pageable);
 }
 

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import se331.project2.entity.News;
 import se331.project2.entity.NewsStatus;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface NewsService {
@@ -20,4 +21,8 @@ public interface NewsService {
     void deleteNewsFromDatabase(Long id);
     void deleteNews(Long id);
     void restoreNews(Long id);
+
+    void setMainImage(Long newsId, String url);
+    void addGalleryImages(Long newsId, List<String> urls);
+    void removeGalleryImage(Long newsId, String url);
 }

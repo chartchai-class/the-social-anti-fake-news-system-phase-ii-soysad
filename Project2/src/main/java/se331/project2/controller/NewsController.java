@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import se331.project2.DTO.News.NewsDetailDTO;
 import se331.project2.DTO.News.NewsHomepageDTO;
@@ -13,8 +14,12 @@ import se331.project2.entity.News;
 import se331.project2.entity.NewsStatus;
 import se331.project2.service.NewsService;
 import se331.project2.util.NewsMapper;
+import se331.project2.util.StorageFileDto;
+import se331.project2.util.SupabaseStorageService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -24,6 +29,8 @@ public class NewsController {
 
     final NewsService newsService;
     final NewsMapper newsMapper;
+    final SupabaseStorageService supabaseStorageService;
+
 
     @GetMapping
     public ResponseEntity<Page<NewsHomepageDTO>> getAllNews(Pageable pageable) {
@@ -98,5 +105,5 @@ public class NewsController {
         newsService.deleteNewsFromDatabase(id);
         return ResponseEntity.noContent().build();
     }
-
+    
 }

@@ -3,8 +3,10 @@ package se331.project2.security.user;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public interface UserDao {
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     User save(User user);
     Page<User> findAll(Pageable pageable);

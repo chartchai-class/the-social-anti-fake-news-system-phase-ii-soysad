@@ -31,12 +31,12 @@ server:
 
 supabase:
   storage:
-    endpoint: https://azhbdcpjgsqhvojmfpft.storage.supabase.co/storage/v1/s3
-    endpoint_output: https://azhbdcpjgsqhvojmfpft.storage.supabase.co/storage/v1/object/public
-    bucket: audi
+    endpoint: https://xapqrepwfmjcrtcsmqzh.storage.supabase.co/storage/v1/s3
+    endpoint_output: https://xapqrepwfmjcrtcsmqzh.storage.supabase.co/storage/v1/object/public
+    bucket: sadboy
     region: ap-southeast-1
-    accessKey: e0bd3d91280d63ce60ef9eeadda7f762
-    secretKey: 60d8a5c3d37d6d581451d7dbe569e6fb46afb5f5d8bb3a10dead4f7de788abf6
+    accessKey: d59b0da3d10c82148151005b3d12fa6a
+    secretKey: 1c60caf61ecc1d86b59750ba483da178d1415212722df9611cf6cbfe1ccfa503
 
 application:
   security:

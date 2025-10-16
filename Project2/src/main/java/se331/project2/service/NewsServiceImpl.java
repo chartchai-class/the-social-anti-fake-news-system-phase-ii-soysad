@@ -1,13 +1,19 @@
 package se331.project2.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import se331.project2.DAO.News.NewsDao;
 import se331.project2.entity.News;
 import se331.project2.entity.NewsStatus;
+import se331.project2.repository.NewsRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +21,7 @@ import java.util.Optional;
 public class NewsServiceImpl implements NewsService {
 
     final NewsDao newsDao;
+    final NewsRepository newsRepository;
 
     @Override
     public Optional<News> getNewsById(Long id) {
@@ -64,5 +71,37 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void restoreNews(Long id) {
         newsDao.restoreNews(id);
+    }
+
+    @Transactional
+    public void setMainImage(Long newsId, String url) {
+        News news = newsRepository.findById(newsId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        news.setMainImageUrl(url);
+        newsRepository.save(news);
+    }
+
+    @Transactional
+    public void addGalleryImages(Long newsId, List<String> urls) {
+        News news = newsRepository.findById(newsId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (news.getGalleryImages() == null) {
+            news.setGalleryImages(new ArrayList<>());
+        }
+        news.getGalleryImages().addAll(urls); // เพิ่มหลายอันทีเดียว
+        newsRepository.save(news);
+    }
+
+
+    @Transactional
+    public void removeGalleryImage(Long newsId, String url) {
+        News news = newsRepository.findById(newsId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (news.getGalleryImages() != null) {
+            news.getGalleryImages().removeIf(u -> u.equals(url));
+        }
+        newsRepository.save(news);
     }
 }

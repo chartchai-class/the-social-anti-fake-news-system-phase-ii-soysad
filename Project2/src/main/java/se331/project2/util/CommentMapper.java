@@ -5,9 +5,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import se331.project2.DTO.Comment.CommentDTO;
-import se331.project2.DTO.UserDTO;
+
 import se331.project2.entity.Comment;
 import se331.project2.security.user.User;
+import se331.project2.security.user.UserDTO;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CommentMapper {
@@ -21,7 +22,7 @@ public interface CommentMapper {
         return UserDTO.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .role(user.getRole())
+                .role(user.getRole().name())
                 .build();
     }
 }

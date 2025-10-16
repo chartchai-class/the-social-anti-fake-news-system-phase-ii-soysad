@@ -13,7 +13,7 @@ public class UserDTO {
     String surname;
     String username;
     String email;
-    String profileImage;
+    String profileImageUrl;
     String role;     // แปลง enum เป็น string ก่อนจะส่งขึ้นนะแจ๊ะ
     Boolean enabled;
 }
