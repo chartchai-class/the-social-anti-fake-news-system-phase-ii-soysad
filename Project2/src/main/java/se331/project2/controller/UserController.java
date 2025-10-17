@@ -1,6 +1,5 @@
 package se331.project2.controller;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,8 +22,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<Page<UserDTO>> getAllUsers(Pageable pageable) {
-        Page<UserDTO> page = userService.findAll(pageable)
-                .map(UserMapper::toDTO);
+        Page<UserDTO> page = userService.findAll(pageable).map(UserMapper.INSTANCE::toUserDto);
         return ResponseEntity.ok(page);
     }
 
@@ -33,15 +31,17 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
         User user = userService.findById(id);
         if (user == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(UserMapper.toDTO(user));
+        return ResponseEntity.ok(UserMapper.INSTANCE.toUserDto(user));
     }
 
     @PatchMapping("/{id}/role")
     public ResponseEntity<UserDTO> updateUserRole(@PathVariable Integer id, @RequestBody UpdateRoleRequest request) {
         User updated = userService.updateRole(id, request.getRole());
         if (updated == null) {return ResponseEntity.notFound().build();}
-        return ResponseEntity.ok(UserMapper.toDTO(updated));
+        return ResponseEntity.ok(UserMapper.INSTANCE.toUserDto(updated));
     }
 
 
 }
+
+

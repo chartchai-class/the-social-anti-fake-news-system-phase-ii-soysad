@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se331.project2.security.user.UserAuthDTO;
 //import se331.lab.entity.OrganizerAUTHDTO;
 
 import java.util.List;
@@ -19,7 +20,6 @@ public class AuthenticationResponse {
   private String accessToken;
   @JsonProperty("refresh_token")
   private String refreshToken;
-//  private OrganizerAUTHDTO user;
-  List<String> roles;
-
+  @JsonProperty("user")
+  private UserAuthDTO user;
 }

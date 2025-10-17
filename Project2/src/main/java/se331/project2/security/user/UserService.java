@@ -9,10 +9,8 @@ import java.util.Optional;
 
 public interface UserService {
     User save(User user);
-
     @Transactional
     Optional<User> findByUsername(String username);
-
     Page<User> findAll(Pageable pageable);
     User findById(Integer id);
     User updateRole(Integer id, Role newRole);

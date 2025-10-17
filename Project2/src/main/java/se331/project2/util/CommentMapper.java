@@ -6,6 +6,7 @@ import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import se331.project2.DTO.Comment.CommentDTO;
 
+//import se331.project2.DTO.Comment.UserDTO;
 import se331.project2.entity.Comment;
 import se331.project2.security.user.User;
 import se331.project2.security.user.UserDTO;
