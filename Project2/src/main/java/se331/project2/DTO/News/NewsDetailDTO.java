@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import se331.project2.DTO.Comment.CommentDTO;
-import se331.project2.DTO.UserDTO;
+import se331.project2.DTO.Comment.UserDTO;
 import se331.project2.entity.NewsStatus;
 
 import java.util.ArrayList;

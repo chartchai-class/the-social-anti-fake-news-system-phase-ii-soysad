@@ -15,9 +15,7 @@ import se331.project2.security.config.JwtService;
 import se331.project2.security.token.Token;
 import se331.project2.security.token.TokenRepository;
 import se331.project2.security.token.TokenType;
-import se331.project2.security.user.Role;
-import se331.project2.security.user.User;
-import se331.project2.security.user.UserRepository;
+import se331.project2.security.user.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,15 +41,17 @@ public class AuthenticationService {
                 .build();
 
         var savedUser = repository.save(user);
-
         var jwtToken = jwtService.generateToken(savedUser);
         var refreshToken = jwtService.generateRefreshToken(savedUser);
+
+      UserAuthDTO userDto = UserMapper.INSTANCE.toUserAuthDTO(savedUser);
 
         saveUserToken(savedUser, jwtToken);
 
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .user(userDto)
                 .build();
     }
 
@@ -69,9 +69,12 @@ public class AuthenticationService {
     String jwtToken = jwtService.generateToken(user);
     String refreshToken = jwtService.generateRefreshToken(user);
     saveUserToken(user, jwtToken);
+    UserAuthDTO userDto = UserMapper.INSTANCE.toUserAuthDTO(user);
+
     return AuthenticationResponse.builder()
             .accessToken(jwtToken)
             .refreshToken(refreshToken)
+            .user(userDto)
             .build();
   }
 
