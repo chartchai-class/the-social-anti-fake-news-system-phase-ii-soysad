@@ -22,4 +22,5 @@ public class AuthenticationResponse {
   private String refreshToken;
   @JsonProperty("user")
   private UserAuthDTO user;
+
 }

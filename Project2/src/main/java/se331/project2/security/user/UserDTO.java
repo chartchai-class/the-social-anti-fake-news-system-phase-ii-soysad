@@ -3,8 +3,10 @@ package se331.project2.security.user;
 // se331.project2.security.user.dto/UserDTO.java
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Value;
 
+@Data
 @Value
 @Builder
 public class UserDTO {
@@ -14,6 +16,6 @@ public class UserDTO {
     String username;
     String email;
     String profileImageUrl;
-    String role;     // แปลง enum เป็น string ก่อนจะส่งขึ้นนะแจ๊ะ
+    String role;
     Boolean enabled;
 }

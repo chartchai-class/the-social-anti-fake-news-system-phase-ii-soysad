@@ -36,6 +36,7 @@ public class AuthenticationService {
                 .surname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .profileImageUrl(request.getProfileImageUrl())
                 .enabled(true)
                 .role(Role.READER)
                 .build();

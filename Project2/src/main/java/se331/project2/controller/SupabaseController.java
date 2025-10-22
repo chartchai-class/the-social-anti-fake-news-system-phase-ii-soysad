@@ -32,9 +32,8 @@ public class SupabaseController {
     final UserService userService;
 
     
-    //News Upload images And Gallery//
-    @PostMapping(value = "/news/uploadFile", consumes = "multipart/form-data")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+    @PostMapping(value = "/uploadFile", consumes = "multipart/form-data")
+    public ResponseEntity<String> uploadFile(@RequestParam("image") MultipartFile file) {
         try{
             if (file == null || file.isEmpty()) {
                 return ResponseEntity.badRequest().body("File is required.");

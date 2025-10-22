@@ -21,4 +21,5 @@ public class RegisterRequest {
   private String confirmPassword;
   private Role roles ;
   private String username;
+  private String profileImageUrl;
 }

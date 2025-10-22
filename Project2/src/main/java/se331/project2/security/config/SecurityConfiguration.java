@@ -45,12 +45,14 @@ public class SecurityConfiguration {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
                       .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
-                      .requestMatchers(HttpMethod.GET, "/news", "/news/**").authenticated()
+                      .requestMatchers(HttpMethod.GET, "/news", "/news/**").permitAll()
                       .requestMatchers(HttpMethod.POST, "/news").hasAnyRole("MEMBER", "ADMIN")
+                      .requestMatchers(HttpMethod.POST, "/uploadFile").permitAll()
 
-                      .requestMatchers(HttpMethod.POST, "/comments").permitAll()
-                      .requestMatchers(HttpMethod.PUT, "/comments/**").permitAll()
-                      .requestMatchers(HttpMethod.OPTIONS,"/**").authenticated()
+
+                      .requestMatchers(HttpMethod.POST, "/comments").authenticated()
+                      .requestMatchers(HttpMethod.PUT, "/comments/**").authenticated()
+
 
                       .requestMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN")
                       .requestMatchers(HttpMethod.GET,  "/users/**").authenticated()

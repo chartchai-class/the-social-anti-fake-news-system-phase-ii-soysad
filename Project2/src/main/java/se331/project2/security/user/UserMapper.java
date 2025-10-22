@@ -21,7 +21,6 @@ public interface UserMapper {
                 .surname(user.getSurname())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                // .profileImage(user.getProfileImageUrl()) // ยังไม่มี field นี้ใน User.java
                 .role(user.getRole() != null ? user.getRole().name() : null)
                 .enabled(user.getEnabled())
                 .build();
@@ -29,6 +28,8 @@ public interface UserMapper {
 
     List<UserDTO> toUserDto(List<User> users);
 
+
     @Mapping(target = "roles", expression = "java(user.getRole() != null ? java.util.Collections.singletonList(user.getRole().name()) : java.util.Collections.emptyList())")
+    @Mapping(source = "profileImageUrl", target = "profileImageUrl")
     UserAuthDTO toUserAuthDTO(User user);
 }
