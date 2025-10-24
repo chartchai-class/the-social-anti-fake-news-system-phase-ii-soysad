@@ -49,6 +49,19 @@ public class CommentsController {
             @AuthenticationPrincipal User principal)
     {
         Comment comment = commentService.updateMyComment(id, "admin", req);
-        return ResponseEntity.ok(commentMapper.toCommentDTO(comment)); }
+        return ResponseEntity.ok(commentMapper.toCommentDTO(comment)); 
+    }
+
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<Void> deleteNews(@PathVariable Long id) {
+//        newsService.deleteNews(id);
+//        return ResponseEntity.noContent().build();
+//    }
+//
+//    @DeleteMapping("/deleteFromDatabase/{id}")
+//    public ResponseEntity<Void> deleteNewsFromDatabase(@PathVariable Long id) {
+//        newsService.deleteNewsFromDatabase(id);
+//        return ResponseEntity.noContent().build();
+//    }
     
 }

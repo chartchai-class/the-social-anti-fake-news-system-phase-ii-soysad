@@ -94,7 +94,7 @@ public class InitApp implements ApplicationRunner {
         // ---------- 1) Users ----------
         User admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder.encode("1233456"))
+                .password(passwordEncoder.encode("123456"))
                 .name("FuJin")
                 .surname("Diamond")
                 .email("admin@example.com")
@@ -124,17 +124,6 @@ public class InitApp implements ApplicationRunner {
                 .profileImageUrl("https://media.printler.com/media/photo/212366-1.jpg?rmode=crop&width=638&height=900")
                 .role(Role.READER)
                 .build();
-
-        User iceza = User.builder()
-                .username("iceza")
-                .password(passwordEncoder.encode("icezaza"))
-                .name("Chef")
-                .surname("ice")
-                .email("reader@example.com")
-                .enabled(true)
-                .profileImageUrl("https://media.printler.com/media/photo/212366-1.jpg?rmode=crop&width=638&height=900")
-                .role(Role.READER)
-                .build();
         
         List<User> extraReaders = java.util.stream.IntStream.rangeClosed(2, 13)
                 .mapToObj(i -> User.builder()
@@ -155,7 +144,6 @@ public class InitApp implements ApplicationRunner {
         allUsers.add(admin);
         allUsers.add(member);
         allUsers.add(reader);
-        allUsers.add(iceza);
         allUsers.addAll(extraReaders);
         userRepository.saveAll(allUsers);
 

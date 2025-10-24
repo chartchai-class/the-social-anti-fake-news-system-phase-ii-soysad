@@ -8,14 +8,15 @@ import se331.project2.entity.NewsStatus;
 import java.util.Optional;
 
 public interface NewsDao {
+    
     Page<News> findAll(Pageable pageable);
+    Page<News> findAllDeleted(Pageable pageable);
     Optional<News> findById(Long id);
-    Optional<News> findBySlug(String slug);
 
     Page<News> findByStatus(NewsStatus status, Pageable pageable);
-    Page<News> findByTopicOrShortDetail(String keyword1, String keyword2, Pageable pageable);
-    Page<News> findByReporterName(String reporterName, Pageable pageable);
-
+    Page<News> findByTopicOrShortDetailOrFullDetailOrReporter(
+            String keyword1, String keyword2,String keyword3,String keyword4,String keyword5, Pageable pageable);
+    
     News save(News news);
     void deleteNewsFromDatabase(Long id);
     void deleteNews(Long id);

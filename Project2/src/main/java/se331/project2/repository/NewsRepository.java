@@ -10,21 +10,26 @@ import org.springframework.stereotype.Repository;
 import se331.project2.entity.News;
 import se331.project2.entity.NewsStatus;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Repository
 public interface NewsRepository extends JpaRepository<News, Long> {
 
-    Optional<News> findBySlug(String slug);
-    Page<News> findByStatus(NewsStatus status, Pageable pageable);
-    Page<News> findByTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCase(
-            String keyword1, String keyword2, Pageable pageable);
-    Page<News> findByReporter_NameContainingIgnoreCase(String reporterName, Pageable pageable);
+    Optional<News> findByIdAndIsDeletedFalse(Long id);
+    Optional<News> findByIdAndIsDeletedTrue(Long id);
+                   
+    Page<News> findAllByIsDeletedFalse(Pageable pageable);
+    Page<News> findAllByIsDeletedTrue(Pageable pageable);
 
-    @Query(value = "SELECT * FROM news WHERE id = :id", nativeQuery = true)
-    Optional<News> findByIdIncludeDeletedNative(@Param("id") Long id);
-
-    @Modifying
-    @Query(value = "UPDATE news SET is_deleted = false WHERE id = :id", nativeQuery = true)
-    int restoreById(@Param("id") Long id);
+    Page<News> findByStatusAndIsDeletedFalse(NewsStatus status, Pageable pageable);
+    Page<News> 
+    findByIsDeletedFalseAndTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCaseOrFullDetailContainingIgnoreCaseOrReporter_NameContainingIgnoreCaseOrReporter_SurnameContainingIgnoreCase
+        (String keyword1,
+         String keyword2,
+         String keyword3,
+         String keyword4,
+         String keyword5,
+         Pageable pageable);
+    
 }

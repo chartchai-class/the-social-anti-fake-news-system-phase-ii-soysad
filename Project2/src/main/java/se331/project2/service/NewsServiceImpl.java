@@ -32,27 +32,21 @@ public class NewsServiceImpl implements NewsService {
     public Page<News> getAllNews(Pageable pageable) {
         return newsDao.findAll(pageable);
     }
-
+    
     @Override
-    public Optional<News> getNewsBySlug(String slug) {
-        return newsDao.findBySlug(slug);
-    }
-
+    public Page<News> getAllDeletedNews(Pageable pageable) { return newsDao.findAllDeleted(pageable);}
+    
     @Override
     public Page<News> getNewsByStatus(NewsStatus status, Pageable pageable) {
         return newsDao.findByStatus(status, pageable);
     }
 
     @Override
-    public Page<News> getNewsByTopicOrShortDetail(String keyword1, String keyword2, Pageable pageable) {
-        return newsDao.findByTopicOrShortDetail(keyword1, keyword2, pageable);
+    public Page<News> getNewsByTopicOrShortDetailOrFullDetailOrReporter(
+            String keyword1, String keyword2,String keyword3,String keyword4,String keyword5, Pageable pageable) {
+        return newsDao.findByTopicOrShortDetailOrFullDetailOrReporter(keyword1, keyword2,keyword3,keyword4,keyword5, pageable);
     }
-
-    @Override
-    public Page<News> getNewsByReporterName(String reporterName, Pageable pageable) {
-        return newsDao.findByReporterName(reporterName, pageable);
-    }
-
+    
     @Override
     public News saveNews(News news) {
         return newsDao.save(news);
@@ -92,16 +86,5 @@ public class NewsServiceImpl implements NewsService {
         news.getGalleryImages().addAll(urls); // เพิ่มหลายอันทีเดียว
         newsRepository.save(news);
     }
-
-
-    @Transactional
-    public void removeGalleryImage(Long newsId, String url) {
-        News news = newsRepository.findById(newsId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        if (news.getGalleryImages() != null) {
-            news.getGalleryImages().removeIf(u -> u.equals(url));
-        }
-        newsRepository.save(news);
-    }
+    
 }

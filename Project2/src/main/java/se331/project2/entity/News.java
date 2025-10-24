@@ -18,7 +18,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Where(clause = "is_deleted = false")
 public class News extends BaseEntity {
 
     @Id

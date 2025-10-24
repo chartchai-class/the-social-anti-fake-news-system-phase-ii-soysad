@@ -20,40 +20,37 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public Page<News> findAll(Pageable pageable) {
-        return newsRepository.findAll(pageable);
+        return newsRepository.findAllByIsDeletedFalse(pageable);
     }
 
+    @Override
+    public Page<News> findAllDeleted(Pageable pageable) {
+        return newsRepository.findAllByIsDeletedTrue(pageable);
+    }
+    
     @Override
     public Optional<News> findById(Long id) {
         return newsRepository.findById(id);
     }
-
-    @Override
-    public Optional<News> findBySlug(String slug) {
-        return newsRepository.findBySlug(slug);
-    }
-
+    
     @Override
     public Page<News> findByStatus(NewsStatus status, Pageable pageable) {
-        return newsRepository.findByStatus(status, pageable);
+        return newsRepository.findByStatusAndIsDeletedFalse(status, pageable);
     }
 
     @Override
-    public Page<News> findByTopicOrShortDetail(String keyword1, String keyword2, Pageable pageable) {
-        return newsRepository.findByTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCase(
-                keyword1, keyword2, pageable);
-    }
-
-    @Override
-    public Page<News> findByReporterName(String reporterName, Pageable pageable) {
-        return newsRepository.findByReporter_NameContainingIgnoreCase(reporterName, pageable);
+    public Page<News> findByTopicOrShortDetailOrFullDetailOrReporter(
+            String keyword1, String keyword2, String keyword3, String keyword4, String keyword5, Pageable pageable) {
+        return newsRepository.
+                findByIsDeletedFalseAndTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCaseOrFullDetailContainingIgnoreCaseOrReporter_NameContainingIgnoreCaseOrReporter_SurnameContainingIgnoreCase
+                        (keyword1, keyword2, keyword3, keyword4, keyword5, pageable);
     }
 
     @Override
     public News save(News news) {
         return newsRepository.save(news);
     }
-
+    
     @Override
     public void deleteNewsFromDatabase(Long id) {
         newsRepository.deleteById(id);
@@ -70,7 +67,7 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public void restoreNews(Long id) {
-        News news = newsRepository.findByIdIncludeDeletedNative(id)
+        News news = newsRepository.findByIdAndIsDeletedTrue(id)
                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         news.setIsDeleted(false);
         newsRepository.save(news);

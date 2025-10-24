@@ -10,13 +10,13 @@ import java.util.Optional;
 
 public interface NewsService {
     Page<News> getAllNews(Pageable pageable);
+    Page<News> getAllDeletedNews(Pageable pageable);
     Optional<News> getNewsById(Long id);
-    Optional<News> getNewsBySlug(String slug);
 
     Page<News> getNewsByStatus(NewsStatus status, Pageable pageable);
-    Page<News> getNewsByTopicOrShortDetail(String keyword1, String keyword2, Pageable pageable);
-    Page<News> getNewsByReporterName(String reporterName, Pageable pageable);
-
+    Page<News> getNewsByTopicOrShortDetailOrFullDetailOrReporter(
+            String keyword1, String keyword2,String keyword3,String keyword4,String keyword5, Pageable pageable);
+    
     News saveNews(News news);
     void deleteNewsFromDatabase(Long id);
     void deleteNews(Long id);
@@ -24,5 +24,4 @@ public interface NewsService {
 
     void setMainImage(Long newsId, String url);
     void addGalleryImages(Long newsId, List<String> urls);
-    void removeGalleryImage(Long newsId, String url);
 }

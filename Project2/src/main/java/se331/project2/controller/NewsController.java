@@ -40,6 +40,12 @@ public class NewsController {
         return ResponseEntity.ok(dtoPage);
     }
 
+    @GetMapping("/Deleted")
+    public ResponseEntity<Page<NewsHomepageDTO>> getAllNewsDeleted(Pageable pageable) {
+        Page<News> page = newsService.getAllDeletedNews(pageable);
+        return ResponseEntity.ok(page.map(newsMapper::getNewsHomepageDTO));
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<NewsDetailDTO> getNewsById(@PathVariable Long id) {
         Optional<News> newsOutput = newsService.getNewsById(id);
@@ -48,15 +54,7 @@ public class NewsController {
                 .map(news -> ResponseEntity.ok(newsMapper.getNewsDetailDTO(news)))
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    @GetMapping("/slug/{slug}")
-    public ResponseEntity<NewsDetailDTO> getNewsBySlug(@PathVariable String slug) {
-        Optional<News> newsOutput = newsService.getNewsBySlug(slug);
-        return newsOutput
-                .map(news -> ResponseEntity.ok(newsMapper.getNewsDetailDTO(news)))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
+    
     @GetMapping("/status/{status}")
     public ResponseEntity<Page<NewsHomepageDTO>> getNewsByStatus(
             @PathVariable String status, Pageable pageable) {
@@ -72,17 +70,10 @@ public class NewsController {
     @GetMapping("/search")
     public ResponseEntity<Page<NewsHomepageDTO>> searchNews(
             @RequestParam String keyword, Pageable pageable) {
-        Page<News> page = newsService.getNewsByTopicOrShortDetail(keyword, keyword, pageable);
+        Page<News> page = newsService.getNewsByTopicOrShortDetailOrFullDetailOrReporter(keyword, keyword,keyword,keyword,keyword, pageable);
         return ResponseEntity.ok(page.map(newsMapper::getNewsHomepageDTO));
     }
-
-    @GetMapping("/reporter")
-    public ResponseEntity<Page<NewsHomepageDTO>> getNewsByReporterName(
-            @RequestParam String name, Pageable pageable) {
-        Page<News> page = newsService.getNewsByReporterName(name, pageable);
-        return ResponseEntity.ok(page.map(newsMapper::getNewsHomepageDTO));
-    }
-
+    
     @PostMapping
     public ResponseEntity<NewsDetailDTO> addNews(@RequestBody News news) {
         News savedNews = newsService.saveNews(news);

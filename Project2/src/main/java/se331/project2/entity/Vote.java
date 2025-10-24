@@ -17,7 +17,6 @@ import se331.project2.security.user.User;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Where(clause = "is_deleted = false")
 public class Vote extends BaseEntity {
 
     @Id
