@@ -30,7 +30,7 @@ public class News extends BaseEntity {
     String shortDetail;
     String fullDetail;
     String mainImageUrl;
-
+    
     @ElementCollection
     @Builder.Default
     List<String> galleryImages = new ArrayList<>();

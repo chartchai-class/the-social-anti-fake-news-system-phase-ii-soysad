@@ -21,6 +21,7 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 @Component
@@ -48,48 +49,41 @@ public class InitApp implements ApplicationRunner {
                 .replaceAll("^-|-$", "");
     }
 
-    private void createCommentsForNews(News news, int fakeCount, int realCount, List<User> users, List<Comment> allComments) {
+    private void createCommentsForNews(News news,
+                                       int fakeCount,
+                                       int realCount,
+                                       List<User> users,
+                                       List<Comment> allComments) {
+        boolean mostlyFake = fakeCount > realCount;
+        java.util.Random rand = new java.util.Random();
 
+        int totalComments = 15;
+        // สุ่มรายชื่อผู้ใช้ 15 คนที่ "ไม่ซ้ำกัน"
+        List<User> shuffled = new java.util.ArrayList<>(users);
+        java.util.Collections.shuffle(shuffled, rand);
+        List<User> pickedAuthors = shuffled.subList(0, Math.min(totalComments, shuffled.size()));
 
+        List<String> fakeBodies = List.of("This looks fake.", "Seems made up.", "Clearly misinformation.", "Unverified and suspicious.");
+        List<String> realBodies = List.of("This seems legit.", "Confirmed by multiple outlets.", "Looks real to me.", "Verified by the source.");
 
-        boolean mostlyFake = (fakeCount > realCount);
+        for (int i = 0; i < pickedAuthors.size(); i++) {
+            User author = pickedAuthors.get(i);
+            boolean isFake = rand.nextDouble() < (mostlyFake ? 0.7 : 0.3);
+            String body = isFake
+                    ? fakeBodies.get(rand.nextInt(fakeBodies.size()))
+                    : realBodies.get(rand.nextInt(realBodies.size()));
 
-        allComments.add(Comment.builder()
-                .news(news)
-                .author(users.get(0)) // admin
-                .body(mostlyFake ? "This looks fake." : "This seems legit.")
-                .attachments(List.of())
-                .voteType(mostlyFake ? VoteType.FAKE : VoteType.NOT_FAKE)
-                .build());
-
-
-        if (fakeCount > 0 && realCount > 0) {
             allComments.add(Comment.builder()
                     .news(news)
-                    .author(users.get(1)) // member
-                    .body(!mostlyFake ? "I don't believe this." : "I heard this too.")
-                    .attachments(List.of())
-                    .voteType(!mostlyFake ? VoteType.FAKE : VoteType.NOT_FAKE)
-                    .build());
-        } else {
-            allComments.add(Comment.builder()
-                    .news(news)
-                    .author(users.get(1)) // member
-                    .body(mostlyFake ? "Definitely not true." : "Confirmed by other sources.")
-                    .attachments(List.of())
-                    .voteType(mostlyFake ? VoteType.FAKE : VoteType.NOT_FAKE)
+                    .author(author)              // ✅ ผู้ใช้ไม่ซ้ำในข่าวนี้
+                    .body(body)
+                    .attachments(java.util.Collections.emptyList())
+                    .voteType(isFake ? VoteType.FAKE : VoteType.NOT_FAKE)
                     .build());
         }
-
-
-        allComments.add(Comment.builder()
-                .news(news)
-                .author(users.get(2)) // reader
-                .body(mostlyFake ? "Source is unreliable." : "This is real.")
-                .attachments(List.of())
-                .voteType(mostlyFake ? VoteType.FAKE : VoteType.NOT_FAKE)
-                .build());
     }
+
+
 
 
     @Override
@@ -100,7 +94,7 @@ public class InitApp implements ApplicationRunner {
         // ---------- 1) Users ----------
         User admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder.encode("admin"))
+                .password(passwordEncoder.encode("1233456"))
                 .name("FuJin")
                 .surname("Diamond")
                 .email("admin@example.com")
@@ -131,8 +125,44 @@ public class InitApp implements ApplicationRunner {
                 .role(Role.READER)
                 .build();
 
-        userRepository.saveAll(List.of(admin, member, reader));
-        List<User> users = List.of(admin, member, reader);
+        User iceza = User.builder()
+                .username("iceza")
+                .password(passwordEncoder.encode("icezaza"))
+                .name("Chef")
+                .surname("ice")
+                .email("reader@example.com")
+                .enabled(true)
+                .profileImageUrl("https://media.printler.com/media/photo/212366-1.jpg?rmode=crop&width=638&height=900")
+                .role(Role.READER)
+                .build();
+        
+        List<User> extraReaders = java.util.stream.IntStream.rangeClosed(2, 13)
+                .mapToObj(i -> User.builder()
+                        .username("reader" + i)
+                        .password(passwordEncoder.encode("reader" + i))
+                        .name("Reader" + i)              // ปรับชื่อได้ตามใจ
+                        .surname("User")
+                        .email("reader" + i + "@example.com")
+                        .enabled(true)
+                        .profileImageUrl("https://picsum.photos/seed/reader" + i + "/400/600")
+                        .role(Role.READER)
+                        .build()
+                )
+                .collect(java.util.stream.Collectors.toList());
+
+
+        List<User> allUsers = new java.util.ArrayList<>();
+        allUsers.add(admin);
+        allUsers.add(member);
+        allUsers.add(reader);
+        allUsers.add(iceza);
+        allUsers.addAll(extraReaders);
+        userRepository.saveAll(allUsers);
+
+
+        List<User> users = allUsers;
+//        userRepository.saveAll(List.of(admin, member, reader));
+//        List<User> users = List.of(admin, member, reader);
 
         // ---------- 2) News ----------
         List<News> allNews = new ArrayList<>();

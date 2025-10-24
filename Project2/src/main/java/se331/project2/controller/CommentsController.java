@@ -30,15 +30,14 @@ public class CommentsController {
     private final CommentMapper commentMapper;
     private final SupabaseStorageService supabaseStorageService;
     
-    @PostMapping
+    @PostMapping("/{newsId}")
     public ResponseEntity<CommentDTO> createNewComment(
-            @RequestParam Long newsId,
-            @RequestBody CreateCommentRequestDTO req,
-            @AuthenticationPrincipal User principal)
+            @PathVariable Long newsId,
+            @RequestBody CreateCommentRequestDTO req
+            )
     {
-
-//        Comment comment = commentService.createCommentWithVote(newsId, principal.getUsername(), req);
-        Comment comment = commentService.createCommentWithVote(newsId,"admin", req);
+        
+        Comment comment = commentService.createCommentWithVote(newsId, req.getUserId(), req);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(commentMapper.toCommentDTO(comment));
     }

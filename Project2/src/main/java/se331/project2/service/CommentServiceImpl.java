@@ -29,9 +29,13 @@ public class CommentServiceImpl {
     
     
     @Transactional
-    public Comment createCommentWithVote(Long newsId, String username, CreateCommentRequestDTO req) {
-        var author = userDao.findByUsername(username)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+    public Comment createCommentWithVote(Long newsId, Integer userId, CreateCommentRequestDTO req) {
+        
+        var author = userDao.findById(userId);
+        if (author == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
         var news = newsDao.findById(newsId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 

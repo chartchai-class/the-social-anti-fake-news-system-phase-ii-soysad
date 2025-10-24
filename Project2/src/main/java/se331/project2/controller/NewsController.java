@@ -83,9 +83,9 @@ public class NewsController {
     }
 
     @PostMapping
-    public ResponseEntity<NewsHomepageDTO> addNews(@RequestBody News news) {
+    public ResponseEntity<NewsDetailDTO> addNews(@RequestBody News news) {
         News savedNews = newsService.saveNews(news);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newsMapper.getNewsHomepageDTO(savedNews));
+        return ResponseEntity.status(HttpStatus.CREATED).body(newsMapper.getNewsDetailDTO(savedNews));
     }
 
     @PutMapping("/restore/{id}")

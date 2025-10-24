@@ -50,8 +50,8 @@ public class SecurityConfiguration {
                       .requestMatchers(HttpMethod.POST, "/uploadFile").permitAll()
 
 
-                      .requestMatchers(HttpMethod.POST, "/comments").authenticated()
-                      .requestMatchers(HttpMethod.PUT, "/comments/**").authenticated()
+                      .requestMatchers(HttpMethod.POST, "/comments/**").permitAll()
+                      .requestMatchers(HttpMethod.PUT, "/comments/**").permitAll()
 
 
                       .requestMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN")

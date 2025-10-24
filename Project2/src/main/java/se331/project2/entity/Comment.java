@@ -46,6 +46,7 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private VoteType voteType;
 
+    @Column(name = "attachments", length = 2048)
     @ElementCollection
     @Builder.Default
     List<String> attachments = new ArrayList<>();

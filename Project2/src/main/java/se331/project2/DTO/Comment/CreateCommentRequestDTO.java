@@ -11,4 +11,5 @@ public class CreateCommentRequestDTO {
     String body;
     VoteType voteType;
     List<String> attachments;
+    Integer userId;
 }
