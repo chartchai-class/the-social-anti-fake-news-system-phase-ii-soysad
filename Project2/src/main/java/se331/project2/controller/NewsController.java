@@ -40,7 +40,7 @@ public class NewsController {
         return ResponseEntity.ok(dtoPage);
     }
 
-    @GetMapping("/Deleted")
+    @GetMapping("/deleted")
     public ResponseEntity<Page<NewsHomepageDTO>> getAllNewsDeleted(Pageable pageable) {
         Page<News> page = newsService.getAllDeletedNews(pageable);
         return ResponseEntity.ok(page.map(newsMapper::getNewsHomepageDTO));
