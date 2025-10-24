@@ -32,6 +32,7 @@ public class NewsController {
     final SupabaseStorageService supabaseStorageService;
 
 
+
     @GetMapping
     public ResponseEntity<Page<NewsHomepageDTO>> getAllNews(Pageable pageable) {
         Page<News> page = newsService.getAllNews(pageable);

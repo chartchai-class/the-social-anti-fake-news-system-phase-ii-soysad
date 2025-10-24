@@ -28,7 +28,10 @@ public class News extends BaseEntity {
     String slug;
     String topic;
     String shortDetail;
+
+    @Column(columnDefinition = "TEXT")
     String fullDetail;
+
     String mainImageUrl;
     
     @ElementCollection
