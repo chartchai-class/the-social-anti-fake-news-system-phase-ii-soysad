@@ -8,9 +8,12 @@ import java.util.Optional;
 
 public interface CommentDao {
 
-    Comment save(Comment comment);
-
     Optional<Comment> findById(Long id);
-
     boolean existsByNewsIdAndAuthorId(Long newsId, Long authorId);
+    
+    Comment save(Comment comment);
+    
+    void softdeleteById(Long id);
+    void harddeleteById(Long id);
+    
 }

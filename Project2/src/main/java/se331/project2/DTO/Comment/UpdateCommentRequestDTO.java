@@ -12,4 +12,5 @@ public class UpdateCommentRequestDTO {
     VoteType voteType;
     List<String> attachments;
     Long version;
+    Integer userId;
 }

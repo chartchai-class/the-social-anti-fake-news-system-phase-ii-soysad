@@ -20,14 +20,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CommentServiceImpl {
+public class CommentServiceImpl implements CommentService {
+    
     private final NewsDao newsDao;
     private final CommentDao commentDao;
-    private final NewsStatusService newsStatusService;
     private final UserDao userDao;
-    private final CommentRepository commentRepository;
     
-    
+    private final NewsStatusService newsStatusService;
+
     @Transactional
     public Comment createCommentWithVote(Long newsId, Integer userId, CreateCommentRequestDTO req) {
         
@@ -56,9 +56,12 @@ public class CommentServiceImpl {
     }
 
     @Transactional
-    public Comment updateMyComment(Long commentId, String username, UpdateCommentRequestDTO req) {
-        var author = userDao.findByUsername(username)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+    public Comment updateMyComment(Long commentId, Integer userId, UpdateCommentRequestDTO req) {
+        
+        var author = userDao.findById(userId);
+        if (author == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
         Comment c = commentDao.findById(commentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
@@ -79,6 +82,7 @@ public class CommentServiceImpl {
         return saved;
     }
 
+    
     @Transactional
     public void addAttachments(Long id, List<String> urls){
         Comment comments = commentDao.findById(id).
@@ -88,8 +92,19 @@ public class CommentServiceImpl {
             comments.setAttachments(new ArrayList<>());
         }
         comments.getAttachments().addAll(urls); 
-        commentRepository.save(comments);
+        commentDao.save(comments);
         
-;
     }
+
+    @Override
+    public void softdeleteComment(Long commentId) {
+        commentDao.softdeleteById(commentId);
+    }
+
+    @Override
+    public void harddeletComment(Long commentId) {
+        commentDao.harddeleteById(commentId);
+    }
+    
+
 }

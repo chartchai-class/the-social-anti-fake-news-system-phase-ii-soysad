@@ -83,7 +83,6 @@ public class SupabaseController {
         }
     }
     
-    
     //Comment Upload attachments
     @PostMapping(value = "/comments/{id}/attachments/upload", consumes = "multipart/form-data")
     public ResponseEntity<?> uploadAttachments(

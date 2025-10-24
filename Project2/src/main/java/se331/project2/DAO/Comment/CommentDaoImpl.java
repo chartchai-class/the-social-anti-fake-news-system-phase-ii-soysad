@@ -27,4 +27,17 @@ public class CommentDaoImpl implements CommentDao {
     public boolean existsByNewsIdAndAuthorId(Long newsId, Long authorId) {
         return commentRepository.existsByNews_IdAndAuthor_Id(newsId, authorId);
     }
+    
+    @Override
+    public void softdeleteById(Long id) {
+        commentRepository.findById(id).ifPresent(comment -> {
+            comment.setIsDeleted(true);
+            commentRepository.save(comment);
+        });
+    }
+    
+    @Override
+    public void harddeleteById(Long id) {
+        commentRepository.deleteById(id);
+    }
 }

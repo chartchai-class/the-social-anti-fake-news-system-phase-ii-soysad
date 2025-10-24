@@ -13,6 +13,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     boolean existsByNews_IdAndAuthor_Id(Long newsId, Long authorId);
 
     long countByNews_IdAndVoteType(Long newsId, VoteType voteType);
-
-    Page<Comment> findByNews_Id(Long newsId, Pageable pageable);
+    
 }
