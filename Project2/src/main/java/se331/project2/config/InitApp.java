@@ -148,10 +148,7 @@ public class InitApp implements ApplicationRunner {
 
 
         List<User> users = allUsers;
-//        userRepository.saveAll(List.of(admin, member, reader));
-//        List<User> users = List.of(admin, member, reader);
 
-        // ---------- 2) News ----------
         List<News> allNews = new ArrayList<>();
 
         News n1 = News.builder()
@@ -401,17 +398,14 @@ public class InitApp implements ApplicationRunner {
         createCommentsForNews(n19, 10, 5, users, allComments);
         createCommentsForNews(n20, 5, 10, users, allComments);
 
-        // --- Save All Comments ---
         commentRepository.saveAll(allComments);
 
-        // ---------- 4) Recalculate Status for all News ----------
         System.out.println("Recalculating status for all news items...");
         for (News news : allNews) {
             newsStatusService.recalcAndUpdateStatus(news.getId());
         }
         System.out.println("Status recalculation complete.");
 
-        // ---------- 5) Print Summary ----------
         System.out.println("Initial data inserted: "
                 + userRepository.count() + " users, "
                 + newsRepository.count() + " news, "
