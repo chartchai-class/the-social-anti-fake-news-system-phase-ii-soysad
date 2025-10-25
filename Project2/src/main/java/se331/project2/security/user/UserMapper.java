@@ -20,6 +20,7 @@ public interface UserMapper {
                 .name(user.getName())
                 .surname(user.getSurname())
                 .username(user.getUsername())
+                .profileImageUrl(user.getProfileImageUrl())
                 .email(user.getEmail())
                 .role(user.getRole() != null ? user.getRole().name() : null)
                 .enabled(user.getEnabled())
