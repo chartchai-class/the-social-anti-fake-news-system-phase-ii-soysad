@@ -1,19 +1,18 @@
 package se331.project2.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import se331.project2.DTO.Comment.CommentDTO;
 import se331.project2.DTO.Comment.CreateCommentRequestDTO;
 import se331.project2.DTO.Comment.UpdateCommentRequestDTO;
 import se331.project2.entity.Comment;
 import se331.project2.repository.CommentRepository;
-import se331.project2.service.CommentServiceImpl;
+import se331.project2.service.CommentService;
+import se331.project2.service.NewsStatusService;
 import se331.project2.util.CommentMapper;
 
 
@@ -21,9 +20,10 @@ import se331.project2.util.CommentMapper;
 @RequestMapping("/comments")
 @RequiredArgsConstructor
 public class CommentsController {
-    private final CommentServiceImpl commentService;
-    private final CommentMapper commentMapper;
+    final CommentService commentService;
+    final CommentMapper commentMapper;
     final CommentRepository commentRepository;
+    final NewsStatusService newsStatusService;
 
     @PostMapping("/{newsId}")
     public ResponseEntity<CommentDTO> createNewComment(
@@ -55,20 +55,26 @@ public class CommentsController {
 
     @DeleteMapping("/delete/{id}/{newsId}")
     public ResponseEntity<Void> deleteNews(@PathVariable Long id, @PathVariable Long newsId) {
-        commentService.softdeleteComment(id, newsId);
+        commentService.softDeleteComment(id);
+        newsStatusService.recalcAndUpdateStatus(newsId);
+
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/deleteFromDatabase/{id}")
     public ResponseEntity<Void> deleteNewsFromDatabase(@PathVariable Long id) {
-        commentService.harddeletComment(id);
+        commentService.hardDeleteComment(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/restore/{id}/{newsId}")
+    public ResponseEntity<Void> restoreComment(@PathVariable Long id, @PathVariable Long newsId) {
+        commentService.restoreComment(id);
+        newsStatusService.recalcAndUpdateStatus(newsId);
+                
+        return ResponseEntity.ok().build();
+
+    }
 }
-//    
-//    @PutMapping("/restore/{id}/{newsId}")
-//    public ResponseEntity<Void> restoreComment(@PathVariable Long id, @PathVariable Long newsId) {
-//        commentService.restoreComment(id,newsId);
-//        return ResponseEntity.ok().build();
-//    
-//    }
+
+    

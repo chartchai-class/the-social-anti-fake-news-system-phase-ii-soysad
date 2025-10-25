@@ -2,11 +2,9 @@ package se331.project2.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
 import se331.project2.security.user.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data

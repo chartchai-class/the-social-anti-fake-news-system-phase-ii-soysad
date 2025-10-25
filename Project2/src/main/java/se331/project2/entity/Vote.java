@@ -3,7 +3,6 @@ package se331.project2.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
 import se331.project2.security.user.User;
 
 @Data

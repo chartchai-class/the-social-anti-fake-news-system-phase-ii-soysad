@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import se331.project2.entity.Comment;
 import se331.project2.entity.News;
+import se331.project2.entity.VoteType;
 import se331.project2.repository.CommentRepository;
 import se331.project2.repository.NewsRepository;
 
@@ -31,6 +32,11 @@ public class CommentDaoImpl implements CommentDao {
     }
     
     @Override
+    public long countByNews_IdAndVoteTypeAndDeletedFalse(Long newsId, VoteType voteType){
+        return  commentRepository.countByNews_IdAndVoteTypeAndDeletedFalse(newsId, voteType);
+    }
+    
+    @Override
     public void softdeleteById(Long id) {
         
         commentRepository.findById(id).ifPresent(comment -> {
@@ -43,6 +49,15 @@ public class CommentDaoImpl implements CommentDao {
     public void harddeleteById(Long id) {
         commentRepository.deleteById(id);
     }
+    
+    @Override
+    public void restore(Long id) {
+        commentRepository.findById(id).ifPresent(comment -> {
+            comment.setDeleted(false);
+            commentRepository.save(comment);
+        });
+    }
+    
     
 
 }

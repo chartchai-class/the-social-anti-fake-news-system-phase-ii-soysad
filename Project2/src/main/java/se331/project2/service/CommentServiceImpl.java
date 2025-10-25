@@ -10,8 +10,6 @@ import se331.project2.DAO.News.NewsDao;
 import se331.project2.DTO.Comment.CreateCommentRequestDTO;
 import se331.project2.DTO.Comment.UpdateCommentRequestDTO;
 import se331.project2.entity.Comment;
-import se331.project2.entity.News;
-import se331.project2.repository.CommentRepository;
 import se331.project2.security.user.Role;
 import se331.project2.security.user.UserDao;
 
@@ -25,7 +23,6 @@ public class CommentServiceImpl implements CommentService {
     private final NewsDao newsDao;
     private final CommentDao commentDao;
     private final UserDao userDao;
-    
     private final NewsStatusService newsStatusService;
 
     @Transactional
@@ -97,15 +94,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void softdeleteComment(Long commentId,Long newsId) {
+    public void softDeleteComment(Long commentId) {
         commentDao.softdeleteById(commentId);
-        newsStatusService.recalcAndUpdateStatus(newsId);
-
     }
 
     @Override
-    public void harddeletComment(Long commentId) {
+    public void hardDeleteComment(Long commentId) {
         commentDao.harddeleteById(commentId);
+    }
+    
+    @Override
+    public void restoreComment(Long commentId) {
+        commentDao.restore(commentId);
     }
     
 
