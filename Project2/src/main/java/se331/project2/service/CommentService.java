@@ -14,7 +14,7 @@ public interface CommentService {
     Comment updateMyComment(Long commentId, Integer userId, UpdateCommentRequestDTO req);
     
     void addAttachments(Long id, List<String> urls);
-    void softdeleteComment(Long commentId);
+    void softdeleteComment(Long commentId,Long newsId);
     void harddeletComment(Long commentId);
     
 }

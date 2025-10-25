@@ -97,8 +97,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void softdeleteComment(Long commentId) {
+    public void softdeleteComment(Long commentId,Long newsId) {
         commentDao.softdeleteById(commentId);
+        newsStatusService.recalcAndUpdateStatus(newsId);
+
     }
 
     @Override

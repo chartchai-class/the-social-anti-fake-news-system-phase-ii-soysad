@@ -23,8 +23,8 @@ public class NewsStatusService {
         News news = newsRepository.findById(newsId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        long fake    = commentRepository.countByNews_IdAndVoteType(newsId, VoteType.FAKE);
-        long notFake = commentRepository.countByNews_IdAndVoteType(newsId, VoteType.NOT_FAKE);
+        long fake    = commentRepository.countByNews_IdAndVoteTypeAndDeletedFalse(newsId, VoteType.FAKE);
+        long notFake = commentRepository.countByNews_IdAndVoteTypeAndDeletedFalse(newsId, VoteType.NOT_FAKE);
 
         NewsStatus ns = (fake > notFake) ? NewsStatus.FAKE :
                 (notFake > fake) ? NewsStatus.NOT_FAKE : NewsStatus.UNVERIFIED;

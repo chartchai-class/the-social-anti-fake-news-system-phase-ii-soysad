@@ -15,5 +15,6 @@ public interface CommentDao {
     
     void softdeleteById(Long id);
     void harddeleteById(Long id);
+    void restore(Long id);
     
 }

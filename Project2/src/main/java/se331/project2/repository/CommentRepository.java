@@ -9,9 +9,8 @@ import se331.project2.entity.VoteType;
 import java.util.Optional;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Optional<Comment> findByNews_IdAndAuthor_Id(Long newsId, Long authorId);
     boolean existsByNews_IdAndAuthor_Id(Long newsId, Long authorId);
 
-    long countByNews_IdAndVoteType(Long newsId, VoteType voteType);
+    long countByNews_IdAndVoteTypeAndDeletedFalse(Long newsId, VoteType voteType);
     
 }
