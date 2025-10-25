@@ -58,7 +58,7 @@ public class InitApp implements ApplicationRunner {
         java.util.Random rand = new java.util.Random();
 
         int totalComments = 15;
-        // สุ่มรายชื่อผู้ใช้ 15 คนที่ "ไม่ซ้ำกัน"
+        //RANDOM 15 GUYS FROM users//
         List<User> shuffled = new java.util.ArrayList<>(users);
         java.util.Collections.shuffle(shuffled, rand);
         List<User> pickedAuthors = shuffled.subList(0, Math.min(totalComments, shuffled.size()));

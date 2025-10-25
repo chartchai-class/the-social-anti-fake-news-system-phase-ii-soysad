@@ -3,7 +3,9 @@ package se331.project2.DAO.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import se331.project2.entity.Comment;
+import se331.project2.entity.News;
 import se331.project2.repository.CommentRepository;
+import se331.project2.repository.NewsRepository;
 
 import java.util.Optional;
 
@@ -12,7 +14,7 @@ import java.util.Optional;
 public class CommentDaoImpl implements CommentDao {
 
     private final CommentRepository commentRepository;
-
+    private final NewsRepository newsRepository;
     @Override
     public Comment save(Comment comment) {
         return commentRepository.save(comment);
@@ -30,8 +32,9 @@ public class CommentDaoImpl implements CommentDao {
     
     @Override
     public void softdeleteById(Long id) {
+        
         commentRepository.findById(id).ifPresent(comment -> {
-            comment.setIsDeleted(true);
+            comment.setDeleted(true);
             commentRepository.save(comment);
         });
     }

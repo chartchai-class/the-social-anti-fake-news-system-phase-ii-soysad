@@ -24,6 +24,7 @@ public class CommentDTO {
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
     VoteType voteType;
+    boolean deleted;
 
     @Builder.Default
     List<String> attachments = new ArrayList<>();

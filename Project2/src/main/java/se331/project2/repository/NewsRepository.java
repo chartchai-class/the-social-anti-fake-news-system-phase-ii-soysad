@@ -16,15 +16,15 @@ import java.util.Optional;
 @Repository
 public interface NewsRepository extends JpaRepository<News, Long> {
 
-    Optional<News> findByIdAndIsDeletedFalse(Long id);
-    Optional<News> findByIdAndIsDeletedTrue(Long id);
+    Optional<News> findByIdAndDeletedFalse(Long id);
+    Optional<News> findByIdAndDeletedTrue(Long id);
                    
-    Page<News> findAllByIsDeletedFalse(Pageable pageable);
-    Page<News> findAllByIsDeletedTrue(Pageable pageable);
+    Page<News> findAllByDeletedFalse(Pageable pageable);
+    Page<News> findAllByDeletedTrue(Pageable pageable);
 
-    Page<News> findByStatusAndIsDeletedFalse(NewsStatus status, Pageable pageable);
+    Page<News> findByStatusAndDeletedFalse(NewsStatus status, Pageable pageable);
     Page<News> 
-    findByIsDeletedFalseAndTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCaseOrFullDetailContainingIgnoreCaseOrReporter_NameContainingIgnoreCaseOrReporter_SurnameContainingIgnoreCase
+    findByDeletedFalseAndTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCaseOrFullDetailContainingIgnoreCaseOrReporter_NameContainingIgnoreCaseOrReporter_SurnameContainingIgnoreCase
         (String keyword1,
          String keyword2,
          String keyword3,

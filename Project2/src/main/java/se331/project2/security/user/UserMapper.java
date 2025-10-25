@@ -6,7 +6,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
@@ -23,11 +23,9 @@ public interface UserMapper {
                 .email(user.getEmail())
                 .role(user.getRole() != null ? user.getRole().name() : null)
                 .enabled(user.getEnabled())
+                .profileImageUrl(user.getProfileImageUrl())
                 .build();
     }
-
-    List<UserDTO> toUserDto(List<User> users);
-
 
     @Mapping(target = "roles", expression = "java(user.getRole() != null ? java.util.Collections.singletonList(user.getRole().name()) : java.util.Collections.emptyList())")
     @Mapping(source = "profileImageUrl", target = "profileImageUrl")

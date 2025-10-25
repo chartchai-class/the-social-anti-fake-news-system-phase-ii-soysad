@@ -10,20 +10,22 @@ import se331.project2.DTO.Comment.CommentDTO;
 import se331.project2.entity.Comment;
 import se331.project2.security.user.User;
 import se331.project2.security.user.UserDTO;
+import se331.project2.security.user.UserMapper;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", uses = { UserMapper.class })
 public interface CommentMapper {
 
-    @Mapping(target = "author" , source = "author" ,  qualifiedByName = "userToUserDTO")
+    @Mapping(target = "author" , source = "author")
+    @Mapping(source = "deleted", target = "deleted")
     CommentDTO toCommentDTO(Comment comment);
 
-    @Named("userToUserDTO")
-    default UserDTO userToUserDTO(User user) {
-        if (user == null) return null;
-        return UserDTO.builder()
-                .id(user.getId())
-                .name(user.getName())
-                .role(user.getRole().name())
-                .build();
-    }
+//    @Named("userToUserDTO")
+//    default UserDTO userToUserDTO(User user) {
+//        if (user == null) return null;
+//        return UserDTO.builder()
+//                .id(user.getId())
+//                .name(user.getName())
+//                .role(user.getRole().name())
+//                .build();
+//    }
 }

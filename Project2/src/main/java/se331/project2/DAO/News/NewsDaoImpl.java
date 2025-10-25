@@ -20,29 +20,29 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public Page<News> findAll(Pageable pageable) {
-        return newsRepository.findAllByIsDeletedFalse(pageable);
+        return newsRepository.findAllByDeletedFalse(pageable);
     }
 
     @Override
     public Page<News> findAllDeleted(Pageable pageable) {
-        return newsRepository.findAllByIsDeletedTrue(pageable);
+        return newsRepository.findAllByDeletedTrue(pageable);
     }
     
     @Override
     public Optional<News> findById(Long id) {
-        return newsRepository.findById(id);
+        return newsRepository.findByIdAndDeletedFalse(id);
     }
     
     @Override
     public Page<News> findByStatus(NewsStatus status, Pageable pageable) {
-        return newsRepository.findByStatusAndIsDeletedFalse(status, pageable);
+        return newsRepository.findByStatusAndDeletedFalse(status, pageable);
     }
 
     @Override
     public Page<News> findByTopicOrShortDetailOrFullDetailOrReporter(
             String keyword1, String keyword2, String keyword3, String keyword4, String keyword5, Pageable pageable) {
         return newsRepository.
-                findByIsDeletedFalseAndTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCaseOrFullDetailContainingIgnoreCaseOrReporter_NameContainingIgnoreCaseOrReporter_SurnameContainingIgnoreCase
+                findByDeletedFalseAndTopicContainingIgnoreCaseOrShortDetailContainingIgnoreCaseOrFullDetailContainingIgnoreCaseOrReporter_NameContainingIgnoreCaseOrReporter_SurnameContainingIgnoreCase
                         (keyword1, keyword2, keyword3, keyword4, keyword5, pageable);
     }
 
@@ -61,15 +61,15 @@ public class NewsDaoImpl implements NewsDao {
         News news = newsRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        news.setIsDeleted(true);
+        news.setDeleted(true);
         newsRepository.save(news);
     }
 
     @Override
     public void restoreNews(Long id) {
-        News news = newsRepository.findByIdAndIsDeletedTrue(id)
+        News news = newsRepository.findByIdAndDeletedTrue(id)
                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        news.setIsDeleted(false);
+        news.setDeleted(false);
         newsRepository.save(news);
     }
 }

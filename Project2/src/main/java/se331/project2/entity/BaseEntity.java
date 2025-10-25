@@ -19,7 +19,7 @@ public abstract class BaseEntity {
     private LocalDateTime updatedAt;
 
     @Column(nullable = false)
-    private Boolean isDeleted = false;  // ถ้ามี soft delete
+    private Boolean deleted = false;
 
     @PrePersist
     public void onCreate() {
