@@ -31,95 +31,107 @@ public class SupabaseController {
     final CommentServiceImpl commentService;
     final UserService userService;
 
-    
-    @PostMapping(value = "/uploadFile", consumes = "multipart/form-data")
-    public ResponseEntity<String> uploadFile(@RequestParam("image") MultipartFile file) {
-        try{
-            if (file == null || file.isEmpty()) {
-                return ResponseEntity.badRequest().body("File is required.");
-            }
-            String fileUrl = supabaseStorageService.uploadFile(file);
 
+    @PostMapping("/uploadFile")
+    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) {
+        try {
+            StorageFileDto fileUrl = supabaseStorageService.uploadImage(file);
             return ResponseEntity.ok(fileUrl);
-        }catch (Exception e) {
-            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
-        }
-    }
-
-    @PostMapping(value = "/news/{id}/mainImage/upload", consumes = "multipart/form-data")
-    public ResponseEntity<?> uploadImage(
-            @PathVariable Long id,
-            @RequestParam("image") MultipartFile file
-    ) {
-        try{
-            StorageFileDto imgUrl = supabaseStorageService.uploadImage(file);
-            newsService.setMainImage(id, imgUrl.getImgUrl());
-            return ResponseEntity.ok(imgUrl);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
         }
     }
 
-    @PostMapping(value = "/news/{id}/gallery/upload", consumes = "multipart/form-data")
-    public ResponseEntity<?> uploadGalleryImage(
-            @PathVariable Long id,
-            @RequestParam("image") List<MultipartFile> files
-    ) {
-        if (files == null || files.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
 
-        try{
-            List<String> urls = new ArrayList<>();
-            for (MultipartFile f : files) {
-                StorageFileDto imgUrl = supabaseStorageService.uploadImage(f); // ตรวจชนิดไฟล์ให้ด้วย
-                urls.add(imgUrl.getImgUrl());
-            }
 
-            newsService.addGalleryImages(id,urls);
-            return ResponseEntity.ok(urls);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
-        }
-    }
-    
-    //Comment Upload attachments
-    @PostMapping(value = "/comments/{id}/attachments/upload", consumes = "multipart/form-data")
-    public ResponseEntity<?> uploadAttachments(
-            @PathVariable Long id,
-            @RequestParam("image") List<MultipartFile> files
-    ) {
-        if (files == null || files.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
+//    @PostMapping(value = "/uploadFile", consumes = "multipart/form-data")
+//    public ResponseEntity<?> uploadFile(@RequestParam("image") MultipartFile file) {
+//        try{
+//            if (file == null || file.isEmpty()) {
+//                return ResponseEntity.badRequest().body("File is required.");
+//            }
+//            StorageFileDto fileDto = supabaseStorageService.uploadImage(file);
+//
+//            return ResponseEntity.ok(fileDto);
+//        }catch (Exception e) {
+//            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
+//        }
+//    }
 
-        try{
-            List<String> urls = new ArrayList<>();
-            for (MultipartFile f : files) {
-                StorageFileDto imgUrl = supabaseStorageService.uploadImage(f);
-                urls.add(imgUrl.getImgUrl());
-            }
-
-            commentService.addAttachments(id,urls);
-            return ResponseEntity.ok(urls);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
-        }
-    }
-    
-    
-    //User Upload ProfileImage//
-    @PostMapping(value = "/users/{id}/profileImage/upload", consumes = "multipart/form-data")
-    public ResponseEntity<?> uploadProfileImage(
-            @PathVariable Integer id,
-            @RequestParam("image") MultipartFile file) {
-        try{
-            StorageFileDto imgUrl = supabaseStorageService.uploadImage(file);
-            userService.setProfileImage(id, imgUrl.getImgUrl());
-            return ResponseEntity.ok(imgUrl);
-
-        }catch (Exception e){
-            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
-        }
-    }
+//    @PostMapping(value = "/news/{id}/mainImage/upload", consumes = "multipart/form-data")
+//    public ResponseEntity<?> uploadImage(
+//            @PathVariable Long id,
+//            @RequestParam("image") MultipartFile file
+//    ) {
+//        try{
+//            StorageFileDto imgUrl = supabaseStorageService.uploadImage(file);
+//            newsService.setMainImage(id, imgUrl.getImgUrl());
+//            return ResponseEntity.ok(imgUrl);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
+//        }
+//    }
+//
+//    @PostMapping(value = "/news/{id}/gallery/upload", consumes = "multipart/form-data")
+//    public ResponseEntity<?> uploadGalleryImage(
+//            @PathVariable Long id,
+//            @RequestParam("image") List<MultipartFile> files
+//    ) {
+//        if (files == null || files.isEmpty()) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//
+//        try{
+//            List<String> urls = new ArrayList<>();
+//            for (MultipartFile f : files) {
+//                StorageFileDto imgUrl = supabaseStorageService.uploadImage(f); // ตรวจชนิดไฟล์ให้ด้วย
+//                urls.add(imgUrl.getImgUrl());
+//            }
+//
+//            newsService.addGalleryImages(id,urls);
+//            return ResponseEntity.ok(urls);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
+//        }
+//    }
+//
+//    //Comment Upload attachments
+//    @PostMapping(value = "/comments/{id}/attachments/upload", consumes = "multipart/form-data")
+//    public ResponseEntity<?> uploadAttachments(
+//            @PathVariable Long id,
+//            @RequestParam("image") List<MultipartFile> files
+//    ) {
+//        if (files == null || files.isEmpty()) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//
+//        try{
+//            List<String> urls = new ArrayList<>();
+//            for (MultipartFile f : files) {
+//                StorageFileDto imgUrl = supabaseStorageService.uploadImage(f);
+//                urls.add(imgUrl.getImgUrl());
+//            }
+//
+//            commentService.addAttachments(id,urls);
+//            return ResponseEntity.ok(urls);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
+//        }
+//    }
+//
+//
+//    //User Upload ProfileImage//
+//    @PostMapping(value = "/users/{id}/profileImage/upload", consumes = "multipart/form-data")
+//    public ResponseEntity<?> uploadProfileImage(
+//            @PathVariable Integer id,
+//            @RequestParam("image") MultipartFile file) {
+//        try{
+//            StorageFileDto imgUrl = supabaseStorageService.uploadImage(file);
+//            userService.setProfileImage(id, imgUrl.getImgUrl());
+//            return ResponseEntity.ok(imgUrl);
+//
+//        }catch (Exception e){
+//            return ResponseEntity.status(500).body("Error uploading file: " + e.getMessage());
+//        }
+//    }
 }

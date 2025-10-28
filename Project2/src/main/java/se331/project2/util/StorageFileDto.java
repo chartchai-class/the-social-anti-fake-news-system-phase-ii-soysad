@@ -6,5 +6,5 @@ import lombok.Data;
 @Builder
 @Data
 public class StorageFileDto {
-    String imgUrl;
+    private String name;
 }

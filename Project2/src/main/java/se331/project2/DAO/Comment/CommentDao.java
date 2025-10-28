@@ -14,6 +14,6 @@ public interface CommentDao {
     long countByNews_IdAndVoteTypeAndDeletedFalse(Long newsId, VoteType voteType);
     void softdeleteById(Long id);
     void harddeleteById(Long id);
-    void restore(Long id);
+//    void restore(Long id);
     
 }
