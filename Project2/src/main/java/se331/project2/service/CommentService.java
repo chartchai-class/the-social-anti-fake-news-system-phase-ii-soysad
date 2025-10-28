@@ -17,5 +17,6 @@ public interface CommentService {
     void softDeleteComment(Long commentId);
     void hardDeleteComment(Long commentId);
     void restoreComment(Long commentId);
+
     
 }
