@@ -55,7 +55,7 @@ public class SecurityConfiguration {
 
 
                       .requestMatchers(HttpMethod.DELETE, "/comments/**").hasAnyRole("ADMIN")
-                      .requestMatchers(HttpMethod.POST, "/comments/**").authenticated()
+                      .requestMatchers(HttpMethod.POST, "/comments/**").permitAll()
                       .requestMatchers(HttpMethod.PUT, "/comments/**").hasAnyRole("ADMIN")
 
 
