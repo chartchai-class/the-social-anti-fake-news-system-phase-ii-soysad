@@ -1,18 +1,52 @@
-version: '3.8'
 
 services:
   db:
     image: mysql
+    container_name: mysql_db
     ports:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: SoySaD_DB
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
 
+  backend:
+    container_name: spring_backend
+
+    image: "thechef2546/soysad-backend:latest"
+
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/SoySaD_DB?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+    networks:
+      - app-network
 
   phpmyadmin:
     image: phpmyadmin
+    container_name: pma
     ports:
       - "9000:80"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

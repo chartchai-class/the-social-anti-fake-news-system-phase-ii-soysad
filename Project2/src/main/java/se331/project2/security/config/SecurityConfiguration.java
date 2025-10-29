@@ -44,6 +44,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests((authorize) -> {
 
               authorize.requestMatchers("/api/v1/auth/**").permitAll()
+                      .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                       .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
                       .requestMatchers(HttpMethod.GET, "/news", "/news/**").permitAll()
                       .requestMatchers(HttpMethod.POST, "/news").hasAnyRole("MEMBER", "ADMIN")
@@ -91,7 +92,10 @@ public class SecurityConfiguration {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(List.of(
                 "http://localhost:5173",
-                "http://13.212.6.216:8001"
+                "http://13.212.6.216:*",
+                "http://47.129.37.170:*"
+
+
         ));
         config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS","PATCH"));
         config.setAllowedHeaders(List.of("*"));
