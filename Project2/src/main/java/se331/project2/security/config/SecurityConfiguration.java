@@ -93,7 +93,7 @@ public class SecurityConfiguration {
         config.setAllowedOriginPatterns(List.of(
                 "http://localhost:5173",
                 "http://13.212.6.216:*",
-                "http://47.128.250.53:*"
+                "http://20.243.152.127:*"
 
 
         ));
