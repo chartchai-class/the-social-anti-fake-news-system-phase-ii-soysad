@@ -16,7 +16,7 @@ services:
   backend:
     container_name: spring_backend
 
-    image: "thechef2546/soysad-backend:latest"
+    image: "thechef2546/soysad-spring:latest"
 
     ports:
       - "8080:8080"
