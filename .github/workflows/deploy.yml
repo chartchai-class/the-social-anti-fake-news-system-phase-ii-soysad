@@ -21,7 +21,6 @@ jobs:
         working-directory: ./Project2
         run: |
           mvn clean install -DskipTests -B
-          # 2. สร้างโฟลเดอร์ dependency และ unzip .jar เข้าไป
           mkdir -p target/dependency && (cd target/dependency; unzip ../*.jar)
 
       - name: Set up QEMU
@@ -41,9 +40,9 @@ jobs:
         with:
           context: ./Project2
           push: true
-          tags: thechef2546/soysad-backend:latest
+          tags: thechef2546/soysad-spring:latest
 
-      - name: Copy docker-compose-prod.yml via SSH
+      - name: Copy docker-compose.yml via SSH
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -63,7 +62,6 @@ jobs:
           port: 22
           script: |
             cd /home/ubuntu/backend
-            mv docker-compose-prod.yml docker-compose.yml
             echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             docker compose down
             docker compose pull
