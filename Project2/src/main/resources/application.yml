@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: Project2
+
+  profiles:
+    active:
+      - db
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/SoySaD_DB?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  tomcat:
+    max-http-form-post-size: 10MB
+    max-swallow-size: -1
+
+supabase:
+  storage:
+    endpoint: https://xapqrepwfmjcrtcsmqzh.storage.supabase.co/storage/v1/s3
+    endpoint_output: https://xapqrepwfmjcrtcsmqzh.storage.supabase.co/storage/v1/object/public
+    bucket: sadboy
+    region: ap-southeast-1
+    accessKey: d59b0da3d10c82148151005b3d12fa6a
+    secretKey: 1c60caf61ecc1d86b59750ba483da178d1415212722df9611cf6cbfe1ccfa503
+
+application:
+  security:
+    jwt:
+      secret-key: b947b895b7de604766606696c00168709555c0196e1c9385bda6df39365141de18b0dfcc4abb824ab96e645591d63097557c3e45ec696a4266b77835e12e95f8
+      expiration: 86400000
+      refresh-token:
+        expiration: 604800000
