@@ -83,7 +83,7 @@ public class NewsServiceImpl implements NewsService {
         if (news.getGalleryImages() == null) {
             news.setGalleryImages(new ArrayList<>());
         }
-        news.getGalleryImages().addAll(urls); // เพิ่มหลายอันทีเดียว
+        news.getGalleryImages().addAll(urls);
         newsRepository.save(news);
     }
     

@@ -11,7 +11,6 @@ import java.util.List;
         name = "comments",
         indexes = @Index(name = "idx_comments_news_id", columnList = "news_id"),
         uniqueConstraints = {
-                // บังคับ 1 คน/ข่าว = 1 คอมเมนต์ (จึง 1 โหวต)
                 @UniqueConstraint(name = "uk_comment_news_author", columnNames = {"news_id","author_id"})
         }
 )

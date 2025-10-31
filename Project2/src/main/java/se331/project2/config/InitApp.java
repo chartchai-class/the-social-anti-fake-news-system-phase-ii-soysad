@@ -57,7 +57,6 @@ public class InitApp implements ApplicationRunner {
         java.util.Random rand = new java.util.Random();
 
         int totalComments = 15;
-        //RANDOM 15 GUYS FROM users//
         List<User> shuffled = new java.util.ArrayList<>(users);
         java.util.Collections.shuffle(shuffled, rand);
         List<User> pickedAuthors = shuffled.subList(0, Math.min(totalComments, shuffled.size()));
@@ -74,7 +73,7 @@ public class InitApp implements ApplicationRunner {
 
             allComments.add(Comment.builder()
                     .news(news)
-                    .author(author)              // ✅ ผู้ใช้ไม่ซ้ำในข่าวนี้
+                    .author(author)
                     .body(body)
                     .attachments(java.util.Collections.emptyList())
                     .voteType(isFake ? VoteType.FAKE : VoteType.NOT_FAKE)
@@ -128,7 +127,7 @@ public class InitApp implements ApplicationRunner {
                 .mapToObj(i -> User.builder()
                         .username("reader" + i)
                         .password(passwordEncoder.encode("reader" + i))
-                        .name("Reader" + i)              // ปรับชื่อได้ตามใจ
+                        .name("Reader" + i)
                         .surname("User")
                         .email("reader" + i + "@example.com")
                         .enabled(true)
@@ -371,10 +370,8 @@ public class InitApp implements ApplicationRunner {
                 .build();
         allNews.add(n20);
 
-        // --- Save All News ---
         newsRepository.saveAll(allNews);
 
-        // ---------- 3) Comments (Based on JSON vote counts) ----------
         List<Comment> allComments = new ArrayList<>();
 
         createCommentsForNews(n1, 10, 5, users, allComments);
