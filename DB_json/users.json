@@ -1,0 +1,180 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "name": "FuJin",
+      "surname": "Diamond",
+      "username": "admin",
+      "email": "admin@example.com",
+      "profileImageUrl": "https://i.pinimg.com/736x/b9/c4/7e/b9c47ef70bff06613d397abfce02c6e7.jpg",
+      "role": "ADMIN",
+      "enabled": true
+    },
+    {
+      "id": 2,
+      "name": "Ice",
+      "surname": "Madrid",
+      "username": "member",
+      "email": "member@example.com",
+      "profileImageUrl": "https://img.uefa.com/imgml/TP/players/1/2026/cutoff/250128377.webp",
+      "role": "MEMBER",
+      "enabled": true
+    },
+    {
+      "id": 3,
+      "name": "Chef",
+      "surname": "Chelsea",
+      "username": "reader",
+      "email": "reader@example.com",
+      "profileImageUrl": "https://media.printler.com/media/photo/212366-1.jpg?rmode=crop&width=638&height=900",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 4,
+      "name": "Reader2",
+      "surname": "User",
+      "username": "reader2",
+      "email": "reader2@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader2/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 5,
+      "name": "Reader3",
+      "surname": "User",
+      "username": "reader3",
+      "email": "reader3@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader3/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 6,
+      "name": "Reader4",
+      "surname": "User",
+      "username": "reader4",
+      "email": "reader4@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader4/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 7,
+      "name": "Reader5",
+      "surname": "User",
+      "username": "reader5",
+      "email": "reader5@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader5/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 8,
+      "name": "Reader6",
+      "surname": "User",
+      "username": "reader6",
+      "email": "reader6@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader6/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 9,
+      "name": "Reader7",
+      "surname": "User",
+      "username": "reader7",
+      "email": "reader7@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader7/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 10,
+      "name": "Reader8",
+      "surname": "User",
+      "username": "reader8",
+      "email": "reader8@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader8/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 11,
+      "name": "Reader9",
+      "surname": "User",
+      "username": "reader9",
+      "email": "reader9@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader9/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 12,
+      "name": "Reader10",
+      "surname": "User",
+      "username": "reader10",
+      "email": "reader10@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader10/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 13,
+      "name": "Reader11",
+      "surname": "User",
+      "username": "reader11",
+      "email": "reader11@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader11/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 14,
+      "name": "Reader12",
+      "surname": "User",
+      "username": "reader12",
+      "email": "reader12@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader12/400/600",
+      "role": "READER",
+      "enabled": true
+    },
+    {
+      "id": 15,
+      "name": "Reader13",
+      "surname": "User",
+      "username": "reader13",
+      "email": "reader13@example.com",
+      "profileImageUrl": "https://picsum.photos/seed/reader13/400/600",
+      "role": "READER",
+      "enabled": true
+    }
+
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 20,
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 16,
+  "first": true,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "numberOfElements": 16,
+  "empty": false
+}

@@ -1,0 +1,429 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "author": {
+        "id": 15,
+        "name": "Reader13",
+        "surname": "User",
+        "username": "reader13",
+        "email": "reader13@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader13/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Confirmed by multiple outlets.",
+      "createdAt": "2025-10-29T01:17:52.122379",
+      "updatedAt": "2025-10-29T01:17:52.122383",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 2,
+      "author": {
+        "id": 12,
+        "name": "Reader10",
+        "surname": "User",
+        "username": "reader10",
+        "email": "reader10@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader10/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Verified by the source.",
+      "createdAt": "2025-10-29T01:17:52.12451",
+      "updatedAt": "2025-10-29T01:17:52.124513",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 3,
+      "author": {
+        "id": 3,
+        "name": "Chef",
+        "surname": "Chelsea",
+        "username": "reader",
+        "email": "reader@example.com",
+        "profileImageUrl": "https://media.printler.com/media/photo/212366-1.jpg?rmode=crop&width=638&height=900",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Looks real to me.",
+      "createdAt": "2025-10-29T01:17:52.125299",
+      "updatedAt": "2025-10-29T01:17:52.125302",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 4,
+      "author": {
+        "id": 2,
+        "name": "Ice",
+        "surname": "Madrid",
+        "username": "member",
+        "email": "member@example.com",
+        "profileImageUrl": "https://img.uefa.com/imgml/TP/players/1/2026/cutoff/250128377.webp",
+        "role": "MEMBER",
+        "enabled": true
+      },
+      "body": "Seems made up.",
+      "createdAt": "2025-10-29T01:17:52.126038",
+      "updatedAt": "2025-10-29T01:17:52.126042",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 5,
+      "author": {
+        "id": 14,
+        "name": "Reader12",
+        "surname": "User",
+        "username": "reader12",
+        "email": "reader12@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader12/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Seems made up.",
+      "createdAt": "2025-10-29T01:17:52.126814",
+      "updatedAt": "2025-10-29T01:17:52.126818",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 6,
+      "author": {
+        "id": 9,
+        "name": "Reader7",
+        "surname": "User",
+        "username": "reader7",
+        "email": "reader7@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader7/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "This looks fake.",
+      "createdAt": "2025-10-29T01:17:52.128628",
+      "updatedAt": "2025-10-29T01:17:52.128632",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 7,
+      "author": {
+        "id": 13,
+        "name": "Reader11",
+        "surname": "User",
+        "username": "reader11",
+        "email": "reader11@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader11/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Clearly misinformation.",
+      "createdAt": "2025-10-29T01:17:52.129682",
+      "updatedAt": "2025-10-29T01:17:52.129686",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 8,
+      "author": {
+        "id": 7,
+        "name": "Reader5",
+        "surname": "User",
+        "username": "reader5",
+        "email": "reader5@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader5/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Looks real to me.",
+      "createdAt": "2025-10-29T01:17:52.130341",
+      "updatedAt": "2025-10-29T01:17:52.130344",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 9,
+      "author": {
+        "id": 8,
+        "name": "Reader6",
+        "surname": "User",
+        "username": "reader6",
+        "email": "reader6@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader6/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Unverified and suspicious.",
+      "createdAt": "2025-10-29T01:17:52.131049",
+      "updatedAt": "2025-10-29T01:17:52.131052",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 10,
+      "author": {
+        "id": 10,
+        "name": "Reader8",
+        "surname": "User",
+        "username": "reader8",
+        "email": "reader8@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader8/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "This looks fake.",
+      "createdAt": "2025-10-29T01:17:52.131763",
+      "updatedAt": "2025-10-29T01:17:52.131769",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 11,
+      "author": {
+        "id": 11,
+        "name": "Reader9",
+        "surname": "User",
+        "username": "reader9",
+        "email": "reader9@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader9/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Clearly misinformation.",
+      "createdAt": "2025-10-29T01:17:52.132367",
+      "updatedAt": "2025-10-29T01:17:52.132369",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 12,
+      "author": {
+        "id": 6,
+        "name": "Reader4",
+        "surname": "User",
+        "username": "reader4",
+        "email": "reader4@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader4/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Unverified and suspicious.",
+      "createdAt": "2025-10-29T01:17:52.132905",
+      "updatedAt": "2025-10-29T01:17:52.132908",
+      "voteType": "FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 13,
+      "author": {
+        "id": 5,
+        "name": "Reader3",
+        "surname": "User",
+        "username": "reader3",
+        "email": "reader3@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader3/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Verified by the source.",
+      "createdAt": "2025-10-29T01:17:52.13346",
+      "updatedAt": "2025-10-29T01:17:52.133463",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 14,
+      "author": {
+        "id": 1,
+        "name": "FuJin",
+        "surname": "Diamond",
+        "username": "admin",
+        "email": "admin@example.com",
+        "profileImageUrl": "https://i.pinimg.com/736x/b9/c4/7e/b9c47ef70bff06613d397abfce02c6e7.jpg",
+        "role": "ADMIN",
+        "enabled": true
+      },
+      "body": "Looks real to me.",
+      "createdAt": "2025-10-29T01:17:52.134074",
+      "updatedAt": "2025-10-29T01:17:52.134078",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 15,
+      "author": {
+        "id": 4,
+        "name": "Reader2",
+        "surname": "User",
+        "username": "reader2",
+        "email": "reader2@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader2/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Looks real to me.",
+      "createdAt": "2025-10-29T01:17:52.134605",
+      "updatedAt": "2025-10-29T01:17:52.134607",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 16,
+      "author": {
+        "id": 10,
+        "name": "Reader8",
+        "surname": "User",
+        "username": "reader8",
+        "email": "reader8@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader8/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Confirmed by multiple outlets.",
+      "createdAt": "2025-10-29T01:17:52.135361",
+      "updatedAt": "2025-10-29T01:17:52.135364",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 17,
+      "author": {
+        "id": 4,
+        "name": "Reader2",
+        "surname": "User",
+        "username": "reader2",
+        "email": "reader2@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader2/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Confirmed by multiple outlets.",
+      "createdAt": "2025-10-29T01:17:52.136021",
+      "updatedAt": "2025-10-29T01:17:52.136025",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 18,
+      "author": {
+        "id": 1,
+        "name": "FuJin",
+        "surname": "Diamond",
+        "username": "admin",
+        "email": "admin@example.com",
+        "profileImageUrl": "https://i.pinimg.com/736x/b9/c4/7e/b9c47ef70bff06613d397abfce02c6e7.jpg",
+        "role": "ADMIN",
+        "enabled": true
+      },
+      "body": "This seems legit.",
+      "createdAt": "2025-10-29T01:17:52.136681",
+      "updatedAt": "2025-10-29T01:56:41.621217",
+      "voteType": "NOT_FAKE",
+      "deleted": true,
+      "attachments": [],
+      "version": 1
+    },
+    {
+      "id": 19,
+      "author": {
+        "id": 15,
+        "name": "Reader13",
+        "surname": "User",
+        "username": "reader13",
+        "email": "reader13@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader13/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "This seems legit.",
+      "createdAt": "2025-10-29T01:17:52.137263",
+      "updatedAt": "2025-10-29T01:17:52.137266",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    },
+    {
+      "id": 20,
+      "author": {
+        "id": 14,
+        "name": "Reader12",
+        "surname": "User",
+        "username": "reader12",
+        "email": "reader12@example.com",
+        "profileImageUrl": "https://picsum.photos/seed/reader12/400/600",
+        "role": "READER",
+        "enabled": true
+      },
+      "body": "Confirmed by multiple outlets.",
+      "createdAt": "2025-10-29T01:17:52.137837",
+      "updatedAt": "2025-10-29T01:17:52.13784",
+      "voteType": "NOT_FAKE",
+      "deleted": false,
+      "attachments": [],
+      "version": 0
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 20,
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": false,
+  "totalPages": 15,
+  "totalElements": 300,
+  "first": true,
+  "size": 20,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "numberOfElements": 20,
+  "empty": false
+}
